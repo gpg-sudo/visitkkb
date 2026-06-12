@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisitKKB Admin Suite</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a4d3e;
+            --primary-dark: #13382d;
+            --primary-light: #2b6b5a;
+            --accent: #c5a059;
+            --bg-light: #f8f9fa;
+            --text-dark: #1f2937;
+            --text-gray: #6b7280;
+            --white: #ffffff;
+            --border: #e5e7eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Layout */
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 260px;
+            background: rgba(26, 77, 62, 0.85);
+            backdrop-filter: blur(8px);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            transition: width 0.3s ease;
+        }
+
+        .brand {
+            padding: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .brand h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--white);
+            letter-spacing: 1px;
+        }
+
+        .brand span {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            flex: 1;
+            padding: 24px 0;
+            overflow-y: auto;
+        }
+
+        .nav-group {
+            margin-bottom: 24px;
+        }
+
+        .nav-label {
+            padding: 0 24px;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .nav-item {
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-left: 4px solid var(--accent);
+        }
+
+        .nav-icon {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            height: 70px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+
+        .header-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+        }
+
+        /* Cards & Panels */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Forms */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 77, 62, 0.1);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-dark);
+        }
+
+        .btn-outline:hover {
+            background: var(--bg-light);
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 16px;
+            background: var(--bg-light);
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--text-gray);
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-primary {
+            background: #e0f2f1;
+            color: #1a4d3e;
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Login Screen */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .login-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Integration Status */
+        .integration-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .integration-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .integration-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div class="login-overlay" id="loginScreen">
+        <div class="login-box">
+            <div style="text-align: center; margin-bottom: 32px;">
+                <h1
+                    style="font-family: 'Playfair Display', serif; color: var(--primary); font-size: 32px; margin-bottom: 8px;">
+                    VisitKKB</h1>
+                <p style="color: var(--text-gray);">Admin Control Suite</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" id="loginEmail" value="admin@visitkkb.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="loginPassword" value="Admin123456!" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Access Dashboard</button>
+            </form>
+            <div id="loginError"
+                style="color: var(--danger); text-align: center; margin-top: 16px; font-size: 14px; display: none;">
+            </div>
+        </div>
+    </div>
+
+    <!-- App Container -->
+    <div class="app-container" id="appContainer" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="brand">
+                <h1>Visit<span>KKB</span></h1>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-group">
+                    <div class="nav-label">Main</div>
+                    <a onclick="showSection('dashboard')" class="nav-item active" id="nav-dashboard">
+                        <span class="nav-icon">📊</span> Dashboard
+                    </a>
+                    <a onclick="showSection('bookings')" class="nav-item" id="nav-bookings">
+                        <span class="nav-icon">📅</span> Bookings
+                    </a>
+                </div>
+
+                <div class="nav-group">
+                    <div class="nav-label">Management</div>
+                    <a onclick="showSection('agents')" class="nav-item" id="nav-agents">
+                        <span class="nav-icon">👥</span> Agents & Operators
+                    </a>
+                    <a onclick="showSection('activities')" class="nav-item" id="nav-activities">
+                        <span class="nav-icon">🎯</span> Activities
+                    </a>
+                    <a onclick="showSection('stays')" class="nav-item" id="nav-stays">
+                        <span class="nav-icon">🏠</span> Stays
+                    </a>
+                </div>
+
+                <div class="nav-group">
+                    <div class="nav-label">System</div>
+                    <a onclick="showSection('settings')" class="nav-item" id="nav-settings">
+                        <span class="nav-icon">⚙️</span> Settings & APIs
+                    </a>
+                    <a onclick="showSection('integrations')" class="nav-item" id="nav-integrations">
+                        <span class="nav-icon">🔄</span> Integrations
+                    </a>
+                    <a onclick="showSection('page-editor')" class="nav-item" id="nav-page-editor">📝 Page Editor</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <div class="header-title">
+                    <h2 id="pageTitle">Dashboard</h2>
+                </div>
+                <div class="user-profile">
+                    <div style="text-align: right;">
+                        <div style="font-weight: 600; font-size: 14px;">Admin User</div>
+                        <div style="font-size: 12px; color: var(--text-gray);">Super Admin</div>
+                    </div>
+                    <div class="avatar">A</div>
+                    <button onclick="logout()" class="btn btn-outline"
+                        style="padding: 8px 16px; font-size: 12px;">Logout</button>
+                    <button onclick="toggleTheme()" class="btn btn-outline"
+                        style="padding: 8px 16px; font-size: 12px; margin-left: 8px;">Toggle Dark</button>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Dashboard Section -->
+                <div id="dashboard" class="section active">
+                    <div class="form-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 32px;">
+                        <div class="card" style="margin-bottom: 0;">
+                            <div style="color: var(--text-gray); font-size: 14px;">Total Revenue</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 8px;">RM
+                                45,250</div>
+                            <div style="color: var(--success); font-size: 12px; margin-top: 4px;">↑ 12% vs last month
+                            </div>
+                        </div>
+                        <div class="card" style="margin-bottom: 0;">
+                            <div style="color: var(--text-gray); font-size: 14px;">Active Bookings</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 8px;">128
+                            </div>
+                            <div style="color: var(--success); font-size: 12px; margin-top: 4px;">↑ 8 new today</div>
+                        </div>
+                        <div class="card" style="margin-bottom: 0;">
+                            <div style="color: var(--text-gray); font-size: 14px;">Total Agents</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--primary); margin-top: 8px;">15
+                            </div>
+                            <div style="color: var(--text-gray); font-size: 12px; margin-top: 4px;">3 pending
+                                verification</div>
+                        </div>
+                        <div class="card" style="margin-bottom: 0;">
+                            <div style="color: var(--text-gray); font-size: 14px;">System Status</div>
+                            <div style="font-size: 24px; font-weight: 700; color: var(--success); margin-top: 8px;">
+                                Healthy</div>
+                            <div style="color: var(--text-gray); font-size: 12px; margin-top: 4px;">All APIs Connected
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Recent Activity</div>
+                        </div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Event</th>
+                                        <th>User</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>10:45 AM</td>
+                                        <td>New Booking #BK001</td>
+                                        <td>John Doe</td>
+                                        <td><span class="badge badge-success">Confirmed</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10:30 AM</td>
+                                        <td>Agent Registration</td>
+                                        <td>KKB Tours</td>
+                                        <td><span class="badge badge-warning">Pending</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agents Section -->
+                <div id="agents" class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Agents & Operators Management</div>
+                            <button onclick="showAddAgentModal()" class="btn btn-primary">+ New Agent</button>
+                        </div>
+                        <div class="table-container">
+                            <table id="agentsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Type</th>
+                                        <th>Contact</th>
+                                        <th>WhatsApp</th>
+                                        <th>Commission</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="agentsTableBody">
+                                    <!-- Populated via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Section -->
+                <div id="settings" class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">System Settings & API Configuration</div>
+                            <button onclick="saveSettings()" class="btn btn-primary">Save Changes</button>
+                        </div>
+
+                        <div class="form-grid">
+                            <!-- External APIs -->
+                            <div>
+                                <h3 style="margin-bottom: 16px; color: var(--primary);">External APIs</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Booking.com API Key (RapidAPI)</label>
+                                    <input type="password" class="form-input" id="setting_BOOKING_API_KEY">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Agoda API Key (RapidAPI)</label>
+                                    <input type="password" class="form-input" id="setting_AGODA_API_KEY">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Instagram Reels API Token</label>
+                                    <input type="password" class="form-input" id="setting_INSTAGRAM_REELS_API_TOKEN">
+                                </div>
+                            </div>
+
+                            <!-- Payment Gateway -->
+                            <div>
+                                <h3 style="margin-bottom: 16px; color: var(--primary);">Payment Gateway</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Stripe Public Key</label>
+                                    <input type="text" class="form-input" id="setting_STRIPE_PUBLIC_KEY">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Stripe Secret Key</label>
+                                    <input type="password" class="form-input" id="setting_STRIPE_SECRET_KEY">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Payment Mode</label>
+                                    <select class="form-input" id="setting_PAYMENT_MODE">
+                                        <option value="TEST">Test Mode</option>
+                                        <option value="LIVE">Live Production</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Notifications -->
+                            <div>
+                                <h3 style="margin-bottom: 16px; color: var(--primary);">Notifications (WhatsApp)</h3>
+                                <div class="form-group">
+                                    <label class="form-label">WhatsApp API Key (Meta)</label>
+                                    <input type="password" class="form-input" id="setting_WHATSAPP_API_KEY">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number ID</label>
+                                    <input type="text" class="form-input" id="setting_WHATSAPP_PHONE_ID">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Test WhatsApp Number</label>
+                                    <div style="display: flex; gap: 8px;">
+                                        <input type="text" class="form-input" id="testWhatsappNumber"
+                                            placeholder="+60...">
+                                        <button onclick="testWhatsapp()" class="btn btn-outline">Test</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integrations Section -->
+                <div id="integrations" class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Integration Status</div>
+                            <button onclick="syncAll()" class="btn btn-primary">Sync All Data</button>
+                        </div>
+
+                        <div class="integration-item">
+                            <div class="integration-info">
+                                <div class="integration-icon">🏨</div>
+                                <div>
+                                    <div style="font-weight: 600;">Booking.com</div>
+                                    <div style="font-size: 12px; color: var(--text-gray);">Hotels & Accommodations</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="badge badge-success">Connected</span>
+                                <button onclick="syncSource('booking')" class="btn btn-outline"
+                                    style="padding: 6px 12px; font-size: 12px;">Sync Now</button>
+                            </div>
+                        </div>
+
+                        <div class="integration-item">
+                            <div class="integration-info">
+                                <div class="integration-icon">🏠</div>
+                                <div>
+                                    <div style="font-weight: 600;">Agoda</div>
+                                    <div style="font-size: 12px; color: var(--text-gray);">Alternative Stays</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="badge badge-success">Connected</span>
+                                <button onclick="syncSource('agoda')" class="btn btn-outline"
+                                    style="padding: 6px 12px; font-size: 12px;">Sync Now</button>
+                            </div>
+                        </div>
+
+                        <div class="integration-item">
+                            <div class="integration-info">
+                                <div class="integration-icon">🗺️</div>
+                                <div>
+                                    <div style="font-weight: 600;">Google Maps</div>
+                                    <div style="font-size: 12px; color: var(--text-gray);">Places & Reviews</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="badge badge-success">Connected</span>
+                                <button onclick="syncSource('google_maps')" class="btn btn-outline"
+                                    style="padding: 6px 12px; font-size: 12px;">Sync Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Page Editor Section -->
+        <div id="page-editor" class="section" style="display:none;">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Page Editor</div>
+                    <button onclick="loadPages()" class="btn btn-primary">Refresh List</button>
+                </div>
+                <div class="form-grid" id="pagesList" style="grid-template-columns: 1fr; gap: 12px; margin-top:16px;">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </div>
+        <!-- Add Agent Modal -->
+        <div id="agentModal" class="login-overlay" style="display: none; background: rgba(0,0,0,0.5);">
+            <div class="login-box" style="max-width: 600px;">
+                <h2 style="margin-bottom: 24px;">Add New Agent/Operator</h2>
+                <form id="agentForm">
+                    <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-input" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Type</label>
+                            <select class="form-input" name="type">
+                                <option value="OPERATOR">Operator</option>
+                                <option value="AGENT">Agent</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="text" class="form-input" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">WhatsApp Number</label>
+                            <input type="text" class="form-input" name="whatsapp" placeholder="e.g. 60123456789">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Commission (%)</label>
+                            <input type="number" class="form-input" name="commission" value="0">
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+                        <button type="button" onclick="closeAgentModal()" class="btn btn-outline">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Agent</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            let authToken = '';
+            let currentUser = null;
+
+            // Login Logic
+            document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+
+                try {
+                    const res = await fetch('/api/auth', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+                    const data = await res.json();
+
+                    if (data.success) {
+                        authToken = data.data.token;
+                        currentUser = data.data.user;
+
+                        document.getElementById('loginScreen').style.display = 'none';
+                        document.getElementById('appContainer').style.display = 'flex';
+
+                        setupDashboardForRole(currentUser.role);
+                    } else {
+                        showError(data.error || 'Login failed');
+                    }
+                } catch (err) {
+                    showError('Connection error');
+                }
+            });
+
+            function setupDashboardForRole(role) {
+                // Update User Profile
+                document.querySelector('.user-profile div div:first-child').textContent = currentUser.name;
+                document.querySelector('.user-profile div div:last-child').textContent = role;
+                document.querySelector('.avatar').textContent = currentUser.name.charAt(0).toUpperCase();
+
+                // Hide/Show Menu Items based on Role
+                if (role === 'OPERATOR' || role === 'AGENT') {
+                    // Hide Admin-only menus
+                    document.getElementById('nav-agents').style.display = 'none';
+                    document.getElementById('nav-settings').style.display = 'none';
+                    document.getElementById('nav-integrations').style.display = 'none';
+
+                    // Rename menus for context
+                    document.getElementById('nav-activities').innerHTML = '<span class="nav-icon">🎯</span> My Activities';
+                    document.getElementById('nav-stays').innerHTML = '<span class="nav-icon">🏠</span> My Stays';
+
+                    // Load Operator Data
+                    loadOperatorDashboard();
+                } else {
+                    // Admin View
+                    loadAdminDashboard();
+                }
+            }
+
+            async function loadOperatorDashboard() {
+                try {
+                    const res = await fetch('/api/operator/dashboard', {
+                        headers: { 'Authorization': `Bearer ${authToken}` }
+                    });
+                    const data = await res.json();
+
+                    if (data.success) {
+                        const stats = data.data.stats;
+                        // Update Dashboard Cards for Operator
+                        const cards = document.querySelectorAll('.card');
+
+                        // Revenue -> Earnings
+                        cards[0].querySelector('div:first-child').textContent = 'My Earnings';
+                        cards[0].querySelector('div:nth-child(2)').textContent = `RM ${stats.revenue.toLocaleString()}`;
+
+                        // Active Bookings
+                        cards[1].querySelector('div:nth-child(2)').textContent = stats.totalBookings;
+
+                        // Total Agents -> Commission
+                        cards[2].querySelector('div:first-child').textContent = 'Commission Due';
+                        cards[2].querySelector('div:nth-child(2)').textContent = `RM ${stats.commission.toLocaleString()}`;
+                        cards[2].querySelector('div:last-child').textContent = `${data.data.profile.commission}% Rate`;
+
+                        // System Status -> My Items
+                        cards[3].querySelector('div:first-child').textContent = 'Active Listings';
+                        cards[3].querySelector('div:nth-child(2)').textContent = stats.itemsCount;
+                        cards[3].querySelector('div:last-child').textContent = 'Live on site';
+
+                        // Update Recent Activity Table
+                        const tbody = document.querySelector('tbody');
+                        tbody.innerHTML = data.data.recentBookings.map(b => `
+                        <tr>
+                            <td>${new Date(b.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+                            <td>New Booking #${b.id.slice(0, 6)}</td>
+                            <td>${b.user.name}</td>
+                            <td><span class="badge badge-success">${b.status}</span></td>
+                        </tr>
+                    `).join('');
+                    }
+                } catch (err) {
+                    console.error('Failed to load operator dashboard', err);
+                }
+            }
+
+            function loadAdminDashboard() {
+                loadAgents();
+                loadSettings();
+                // Admin stats would be loaded from /api/analytics here
+            }
+
+            function showError(msg) {
+                const el = document.getElementById('loginError');
+                el.textContent = msg;
+                el.style.display = 'block';
+            }
+
+            // Navigation
+            function showSection(id) {
+                document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+                document.getElementById(id).classList.add('active');
+
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                document.getElementById('nav-' + id).classList.add('active');
+
+                document.getElementById('pageTitle').textContent = id.charAt(0).toUpperCase() + id.slice(1);
+            }
+
+            // Agents Management
+            async function loadAgents() {
+                try {
+                    const res = await fetch('/api/operators', {
+                        headers: { 'Authorization': `Bearer ${authToken}` }
+                    });
+                    const data = await res.json();
+
+                    if (data.success) {
+                        const tbody = document.getElementById('agentsTableBody');
+                        tbody.innerHTML = data.data.map(agent => `
+                        <tr>
+                            <td>
+                                <div style="font-weight: 500;">${agent.name}</div>
+                                <div style="font-size: 12px; color: var(--text-gray);">${agent.email}</div>
+                            </td>
+                            <td><span class="badge badge-primary">${agent.type}</span></td>
+                            <td>${agent.phone}</td>
+                            <td>${agent.whatsapp || '-'}</td>
+                            <td>${agent.commission}%</td>
+                            <td><span class="badge badge-success">Active</span></td>
+                            <td>
+                                <button onclick="sendWhatsapp('${agent.whatsapp}', 'confirmation')" class="btn btn-outline" style="padding: 4px 8px; font-size: 12px;">Msg</button>
+                            </td>
+                        </tr>
+                    `).join('');
+                    }
+                } catch (err) {
+                    console.error('Failed to load agents', err);
+                }
+            }
+
+            function showAddAgentModal() {
+                document.getElementById('agentModal').style.display = 'flex';
+            }
+
+            function closeAgentModal() {
+                document.getElementById('agentModal').style.display = 'none';
+            }
+
+            document.getElementById('agentForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const res = await fetch('/api/operators', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (res.ok) {
+                        closeAgentModal();
+                        loadAgents();
+                        e.target.reset();
+                    }
+                } catch (err) {
+                    alert('Failed to create agent');
+                }
+            });
+
+            // Settings Management
+            async function loadSettings() {
+                try {
+                    const res = await fetch('/api/settings', {
+                        headers: { 'Authorization': `Bearer ${authToken}` }
+                    });
+                    const data = await res.json();
+
+                    if (data.success) {
+                        Object.entries(data.data).forEach(([key, value]) => {
+                            const el = document.getElementById(`setting_${key}`);
+                            if (el) el.value = value;
+                        });
+                    }
+                } catch (err) {
+                    console.error('Failed to load settings', err);
+                }
+            }
+
+            async function saveSettings() {
+                const settings = {};
+                document.querySelectorAll('[id^="setting_"]').forEach(el => {
+                    const key = el.id.replace('setting_', '');
+                    settings[key] = el.value;
+                });
+
+                try {
+                    const res = await fetch('/api/settings', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ settings })
+                    });
+
+                    if (res.ok) alert('Settings saved successfully!');
+                } catch (err) {
+                    alert('Failed to save settings');
+                }
+            }
+
+            // WhatsApp Integration
+            async function testWhatsapp() {
+                const phone = document.getElementById('testWhatsappNumber').value;
+                if (!phone) return alert('Please enter a phone number');
+
+                try {
+                    const res = await fetch('/api/notifications/whatsapp', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            phone,
+                            type: 'test',
+                            data: { message: 'Test message from VisitKKB Admin Panel' }
+                        })
+                    });
+
+                    const data = await res.json();
+                    if (data.success) alert('Test message sent!');
+                    else alert('Failed to send message');
+                } catch (err) {
+                    alert('Error sending message');
+                }
+            }
+
+            async function sendWhatsapp(phone, type) {
+                if (!phone) return alert('No WhatsApp number for this agent');
+
+                try {
+                    const res = await fetch('/api/notifications/whatsapp', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            phone,
+                            type,
+                            data: {
+                                item: 'Paragliding Adventure',
+                                date: '2025-12-25'
+                            }
+                        })
+                    });
+
+                    if (res.ok) alert('Message sent!');
+                } catch (err) {
+                    alert('Failed to send message');
+                }
+            }
+
+            // Integrations
+            async function syncSource(source) {
+                try {
+                    const res = await fetch('/api/integrations', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${authToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ source })
+                    });
+
+                    const data = await res.json();
+                    alert(`Sync complete! Synced: ${JSON.stringify(data.synced)}`);
+                } catch (err) {
+                    alert('Sync failed');
+                }
+            }
+
+            function logout() {
+                location.reload();
+            }
+        </script>
+</body>
+
+</html>

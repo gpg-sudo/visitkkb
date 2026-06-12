@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@plugin "tailwindcss-animate";
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@custom-variant dark (&:is(.dark *));
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme {
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --radius: 0.5rem;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  /* Luxury Light Mode */
+  --background: hsl(36 30% 97%);
+  /* Warm Cream */
+  --foreground: hsl(160 6% 15%);
+  /* Deep Charcoal */
+
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(160 6% 15%);
+
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(160 6% 15%);
+
+  --primary: hsl(165 45% 25%);
+  /* Deep Emerald */
+  --primary-foreground: hsl(36 30% 97%);
+
+  --secondary: hsl(30 25% 90%);
+  /* Light Beige */
+  --secondary-foreground: hsl(160 6% 15%);
+
+  --muted: hsl(30 20% 92%);
+  --muted-foreground: hsl(160 4% 45%);
+
+  --accent: hsl(35 50% 50%);
+  /* Muted Gold */
+  --accent-foreground: hsl(0 0% 100%);
+
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+
+  --border: hsl(30 15% 85%);
+  --input: hsl(30 15% 85%);
+  --ring: hsl(165 45% 25%);
+
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Luxury Dark Mode */
+  --background: hsl(160 10% 8%);
+  /* Deep Green/Black */
+  --foreground: hsl(36 20% 90%);
+  /* Off-white */
+
+  --card: hsl(160 10% 12%);
+  --card-foreground: hsl(36 20% 90%);
+
+  --popover: hsl(160 10% 12%);
+  --popover-foreground: hsl(36 20% 90%);
+
+  --primary: hsl(165 40% 40%);
+  /* Lighter Emerald */
+  --primary-foreground: hsl(160 10% 8%);
+
+  --secondary: hsl(160 10% 15%);
+  --secondary-foreground: hsl(36 20% 90%);
+
+  --muted: hsl(160 10% 15%);
+  --muted-foreground: hsl(160 5% 60%);
+
+  --accent: hsl(35 50% 50%);
+  /* Gold */
+  --accent-foreground: hsl(0 0% 100%);
+
+  --destructive: hsl(0 62.8% 30.6%);
+  --destructive-foreground: hsl(0 0% 98%);
+
+  --border: hsl(160 10% 20%);
+  --input: hsl(160 10% 20%);
+  --ring: hsl(165 40% 40%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif tracking-tight;
+  }
 }

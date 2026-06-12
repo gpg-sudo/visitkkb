@@ -1,0 +1,150 @@
+[
+  {
+    "slug": "white-water-rafting-sungai-selangor",
+    "name": "White Water Rafting",
+    "location": "Sungai Selangor",
+    "prompt": "Photorealistic travel documentary photo of white water rafting on Sungai Selangor river in Kuala Kubu Bharu, Malaysia — rafters in helmets navigating brown muddy rapids with dense tropical broadleaf rainforest on both banks, Malaysian jungle vegetation with palms and ferns, rocky muddy riverbanks, humid tropical atmosphere, midday light, wide 16:9 shot, people seen from behind only, no faces visible, authentic Malaysian river gorge setting",
+    "filename": "/images/activities/white-water-rafting-sungai-selangor-hero.jpg"
+  },
+  {
+    "slug": "chiling-waterfall-hike-chiling-fish-sanctuary",
+    "name": "Chiling Waterfall Hike",
+    "location": "Chiling Fish Sanctuary",
+    "prompt": "Photorealistic travel documentary photo of Chiling Waterfall at Chiling Fish Sanctuary, Kuala Kubu Bharu, Malaysia — hikers crossing shallow clear tropical river with smooth rocks, dense Malaysian rainforest with broadleaf trees and hanging vines, large multi-tier waterfall in background, humid misty jungle atmosphere, soft morning light filtering through tropical canopy, wide 16:9 shot, hikers seen from behind, no faces, authentic Malaysian jungle waterfall setting",
+    "filename": "/images/activities/chiling-waterfall-hike-chiling-fish-sanctuary-hero.jpg"
+  },
+  {
+    "slug": "paragliding-experience-bukit-batu-pahat",
+    "name": "Paragliding Experience",
+    "location": "Bukit Batu Pahat",
+    "prompt": "Photorealistic travel documentary photo of paragliding from Bukit Batu Pahat hill in Kuala Kubu Bharu, Malaysia — paraglider soaring above rolling green tropical hills covered in Malaysian rainforest, no snow or alpine features, only tropical broadleaf forest, valley below with rubber plantations and small villages, golden hour light, wide 16:9 aerial shot, pilot seen from behind in harness, no face visible, authentic Malaysian hill landscape",
+    "filename": "/images/activities/paragliding-experience-bukit-batu-pahat-hero.jpg"
+  },
+  {
+    "slug": "historical-town-walk-town-center",
+    "name": "Historical Town Walk",
+    "location": "Town Center",
+    "prompt": "Photorealistic travel documentary photo of historical town walk in Kuala Kubu Bharu town center, Malaysia — colonial-era Malaysian shophouses with five-foot walkways, pastel-colored facades, old signage in Malay and English, narrow street with parked motorcycles, tropical mountains in background, warm afternoon light, wide 16:9 shot, tourists walking from behind, no faces, authentic Malaysian small town architecture",
+    "filename": "/images/activities/historical-town-walk-town-center-hero.jpg"
+  },
+  {
+    "slug": "night-jungle-trek-pertak-forest",
+    "name": "Night Jungle Trek",
+    "location": "Pertak Forest",
+    "prompt": "Photorealistic travel documentary photo of night jungle trek in Pertak Forest, Kuala Kubu Bharu, Malaysia — hikers with headlamps on narrow muddy trail through dense Malaysian tropical rainforest, beams of light cutting through humid air, dark green broadleaf foliage, no pine trees, only tropical vegetation, deep blue-black night sky, wide 16:9 shot, silhouettes from behind, no faces, authentic Malaysian rainforest night atmosphere",
+    "filename": "/images/activities/night-jungle-trek-pertak-forest-hero.jpg"
+  },
+  {
+    "slug": "bukit-kutu-hiking-kampung-pertak",
+    "name": "Bukit Kutu Hiking",
+    "location": "Kampung Pertak",
+    "prompt": "Photorealistic travel documentary photo of Bukit Kutu hiking summit near Kampung Pertak, Kuala Kubu Bharu, Malaysia — hiker standing on rocky granite boulders at summit, panoramic view of rolling Malaysian tropical hills covered in green rainforest, no alpine peaks or snow, only tropical forest and misty valleys, old colonial chimney ruin visible, early morning mist, wide 16:9 shot, hiker seen from behind, no face, authentic Malaysian mountain summit",
+    "filename": "/images/activities/bukit-kutu-hiking-kampung-pertak-hero.jpg"
+  },
+  {
+    "slug": "hot-spring-relaxation-taman-arif",
+    "name": "Hot Spring Relaxation",
+    "location": "Taman Arif",
+    "prompt": "Photorealistic travel documentary photo of hot spring relaxation at Taman Arif, Kuala Kubu Bharu, Malaysia — natural stone hot spring pool surrounded by tropical Malaysian jungle vegetation, steam rising from warm mineral water, dense green broadleaf trees, no alpine or desert features, only tropical setting, soft evening light, wide 16:9 shot, person relaxing seen from behind, no face, authentic Malaysian natural hot spring",
+    "filename": "/images/activities/hot-spring-relaxation-taman-arif-hero.jpg"
+  },
+  {
+    "slug": "stargazing-at-selangor-dam-sungai-selangor-dam",
+    "name": "Stargazing at Selangor Dam",
+    "location": "Sungai Selangor Dam",
+    "prompt": "Photorealistic travel documentary photo of stargazing at Sungai Selangor Dam, Kuala Kubu Bharu, Malaysia — iconic curved concrete dam structure silhouetted against starry night sky, calm dark reservoir water reflecting stars, tropical hills in background, no alpine or desert features, only Malaysian tropical setting, deep blue twilight, wide 16:9 shot, person sitting on dam wall looking up, seen from behind, no face, authentic Malaysian dam structure",
+    "filename": "/images/activities/stargazing-at-selangor-dam-sungai-selangor-dam-hero.jpg"
+  },
+  {
+    "slug": "fishing-at-chiling-sanctuary-chiling-fish-sanctuary",
+    "name": "Fishing at Chiling Sanctuary",
+    "location": "Chiling Fish Sanctuary",
+    "prompt": "Photorealistic travel documentary photo of fishing at Chiling Fish Sanctuary, Kuala Kubu Bharu, Malaysia — angler sitting on smooth river rocks by clear shallow tropical river, dense Malaysian rainforest on both banks, green-brown water with visible fish, tropical broadleaf vegetation, no alpine streams, only Malaysian jungle river, soft morning light, wide 16:9 shot, angler seen from behind, no face, authentic Malaysian river fishing",
+    "filename": "/images/activities/fishing-at-chiling-sanctuary-chiling-fish-sanctuary-hero.jpg"
+  },
+  {
+    "slug": "atv-adventure-trail-pertak-forest",
+    "name": "ATV Adventure Trail",
+    "location": "Pertak Forest",
+    "prompt": "Photorealistic travel documentary photo of ATV adventure trail in Pertak Forest, Kuala Kubu Bharu, Malaysia — ATV rider driving through muddy jungle trail, splashing brown mud, dense Malaysian tropical rainforest with broadleaf trees and ferns on both sides, no alpine or desert terrain, only tropical jungle, dappled midday sunlight, wide 16:9 shot, rider seen from behind, no face, authentic Malaysian jungle trail",
+    "filename": "/images/activities/atv-adventure-trail-pertak-forest-hero.jpg"
+  },
+  {
+    "slug": "mountain-biking-trail-kkb-countryside",
+    "name": "Mountain Biking Trail",
+    "location": "KKB Countryside",
+    "prompt": "Photorealistic travel documentary photo of mountain biking trail in KKB countryside, Kuala Kubu Bharu, Malaysia — mountain biker riding on narrow singletrack through Malaysian rubber estate and tropical forest, rolling green hills, no alpine mountains, only tropical landscape, rubber trees and broadleaf jungle, golden hour light, wide 16:9 shot, cyclist seen from behind, no face, authentic Malaysian countryside trail",
+    "filename": "/images/activities/mountain-biking-trail-kkb-countryside-hero.jpg"
+  },
+  {
+    "slug": "lata-medang-waterfall-hike-lata-medang",
+    "name": "Lata Medang Waterfall Hike",
+    "location": "Lata Medang",
+    "prompt": "Photorealistic travel documentary photo of Lata Medang waterfall hike, Kuala Kubu Bharu, Malaysia — hiker standing before tall cascading waterfall inside dense Malaysian tropical rainforest, green-brown water, mossy rocks, broadleaf trees and hanging vines, no alpine or European waterfall features, only tropical Malaysian jungle, humid misty atmosphere, soft morning light, wide 16:9 shot, hiker seen from behind, no face, authentic Malaysian rainforest waterfall",
+    "filename": "/images/activities/lata-medang-waterfall-hike-lata-medang-hero.jpg"
+  },
+  {
+    "slug": "cherandong-waterfall-trek-cherandong",
+    "name": "Cherandong Waterfall Trek",
+    "location": "Cherandong",
+    "prompt": "Photorealistic travel documentary photo of Cherandong waterfall trek, Kuala Kubu Bharu, Malaysia — trekkers walking along rocky tropical riverbed through deep Malaysian rainforest towards cascading waterfall, dense broadleaf jungle with palms and ferns, green-brown water, no alpine streams, only Malaysian tropical cascade, humid atmosphere, mid-morning light, wide 16:9 shot, trekkers seen from behind, no faces, authentic Malaysian jungle waterfall",
+    "filename": "/images/activities/cherandong-waterfall-trek-cherandong-hero.jpg"
+  },
+  {
+    "slug": "lata-makau-jungle-trek-lata-makau",
+    "name": "Lata Makau Jungle Trek",
+    "location": "Lata Makau",
+    "prompt": "Photorealistic travel documentary photo of Lata Makau jungle trek, Kuala Kubu Bharu, Malaysia — challenging trek through dense remote Malaysian tropical rainforest, steep muddy terrain with roots and rocks, thick broadleaf vegetation, no alpine or temperate forest, only tropical jungle, damp forest floor, soft diffused light, wide 16:9 shot, hiker navigating seen from behind, no face, authentic Malaysian deep jungle",
+    "filename": "/images/activities/lata-makau-jungle-trek-lata-makau-hero.jpg"
+  },
+  {
+    "slug": "kelah-sanctuary-visit-kelah-sanctuary",
+    "name": "Kelah Sanctuary Visit",
+    "location": "Kelah Sanctuary",
+    "prompt": "Photorealistic travel documentary photo of Kelah Sanctuary visit, Kuala Kubu Bharu, Malaysia — clear tropical river water teeming with large Kelah fish, visitor standing on wooden platform or riverbank, dense Malaysian rainforest background, green-brown water, no alpine streams, only Malaysian tropical river, bright midday light, wide 16:9 shot, visitor seen from behind, no face, authentic Malaysian fish sanctuary",
+    "filename": "/images/activities/kelah-sanctuary-visit-kelah-sanctuary-hero.jpg"
+  },
+  {
+    "slug": "ampang-pecah-historic-site-ampang-pecah",
+    "name": "Ampang Pecah Historic Site",
+    "location": "Ampang Pecah",
+    "prompt": "Photorealistic travel documentary photo of Ampang Pecah historic site, Kuala Kubu Bharu, Malaysia — old dam ruins and grassy riverbank by calm tropical river, tropical hills in background, Malaysian jungle vegetation, no alpine or desert features, only Malaysian tropical landscape, picnic scene, late afternoon warm light, wide 16:9 shot, people seen from behind, no faces, authentic Malaysian historic riverside site",
+    "filename": "/images/activities/ampang-pecah-historic-site-ampang-pecah-hero.jpg"
+  },
+  {
+    "slug": "taman-milenium-lake-walk-taman-tasik-milenium",
+    "name": "Taman Milenium Lake Walk",
+    "location": "Taman Tasik Milenium",
+    "prompt": "Photorealistic travel documentary photo of Taman Milenium lake walk, Kuala Kubu Bharu, Malaysia — person walking on paved path around serene man-made lake, reflection of tropical trees on calm water, Malaysian park setting with tropical vegetation, no alpine lakes, only Malaysian park landscape, morning mist, wide 16:9 shot, walker seen from behind, no face, authentic Malaysian lake park",
+    "filename": "/images/activities/taman-milenium-lake-walk-taman-tasik-milenium-hero.jpg"
+  },
+  {
+    "slug": "lake-pelasari-kayaking-lake-pelasari",
+    "name": "Lake Pelasari Kayaking",
+    "location": "Lake Pelasari",
+    "prompt": "Photorealistic travel documentary photo of Lake Pelasari kayaking, Kuala Kubu Bharu, Malaysia — kayak gliding on calm wide lake water surrounded by lush green tropical hills, Malaysian rainforest on shores, no alpine mountains, only tropical landscape, morning light with mist rising, wide 16:9 shot, kayaker seen from behind, no face, authentic Malaysian lake setting",
+    "filename": "/images/activities/lake-pelasari-kayaking-lake-pelasari-hero.jpg"
+  },
+  {
+    "slug": "pelasari-fishing-experience-lake-pelasari",
+    "name": "Pelasari Fishing Experience",
+    "location": "Lake Pelasari",
+    "prompt": "Photorealistic travel documentary photo of Pelasari fishing experience, Kuala Kubu Bharu, Malaysia — angler fishing from boat or shore on calm wide lake, rod cast out, tranquil water reflecting tropical hills, Malaysian jungle on shores, no alpine features, only Malaysian lake landscape, early morning or late afternoon warm light, wide 16:9 shot, angler seen from behind, no face, authentic Malaysian lake fishing",
+    "filename": "/images/activities/pelasari-fishing-experience-lake-pelasari-hero.jpg"
+  },
+  {
+    "slug": "kuala-kubu-bharu-street-art-walk-town-center",
+    "name": "Kuala Kubu Bharu Street Art Walk",
+    "location": "Town Center",
+    "prompt": "Photorealistic travel documentary photo of Kuala Kubu Bharu street art walk in town center, Malaysia — visitor walking down narrow back lane with colorful murals painted on old Malaysian shophouse walls, colonial architecture, tropical mountains in background, bright sunny day, wide 16:9 shot, visitor seen from behind, no face, authentic Malaysian town street art scene",
+    "filename": "/images/activities/kuala-kubu-bharu-street-art-walk-town-center-hero.jpg"
+  },
+  {
+    "slug": "ltdl-climbing-route-cycling-kkb-to-frasers-hill",
+    "name": "LTDL Climbing Route Cycling",
+    "location": "KKB to Fraser's Hill",
+    "prompt": "Photorealistic travel documentary photo of LTDL climbing route cycling from KKB to Fraser's Hill, Malaysia — road cyclist climbing steep winding road through Malaysian tropical rainforest, lush green broadleaf forest on both sides, no alpine mountains, only tropical hills, rubber plantations visible, cool morning light with long shadows, wide 16:9 shot, cyclist seen from behind, no face, authentic Malaysian mountain road climb",
+    "filename": "/images/activities/ltdl-climbing-route-cycling-kkb-to-frasers-hill-hero.jpg"
+  }
+]
+

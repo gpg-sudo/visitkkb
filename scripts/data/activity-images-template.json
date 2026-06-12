@@ -1,0 +1,276 @@
+[
+  {
+    "slug": "atv-adventure-trail",
+    "name": "ATV Adventure Trail",
+    "location": "Pertak Forest",
+    "thumbnail": "https://placeholder.com/1200x675/atv-pertak-forest.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/atv-pertak-1.jpg",
+      "https://placeholder.com/1920x1080/atv-pertak-2.jpg",
+      "https://placeholder.com/1920x1080/atv-pertak-3.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated photorealistic image of ATV vehicles navigating through rugged jungle trails in Pertak Forest, Malaysian tropical rainforest setting, 16:9 aspect ratio, no identifiable faces"
+  },
+  {
+    "slug": "ampang-pecah-historic-site",
+    "name": "Ampang Pecah Historic Site",
+    "location": "Ampang Pecah (Alor Lempah)",
+    "thumbnail": "https://placeholder.com/1200x675/ampang-pecah-historic.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/ampang-pecah-river.jpg",
+      "https://placeholder.com/1920x1080/ampang-pecah-dam-remnants.jpg",
+      "https://placeholder.com/1920x1080/ampang-pecah-picnic.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image showing the historic Ampang Pecah site with river, dam remnants, and picnic area, Malaysian countryside setting, historical context"
+  },
+  {
+    "slug": "bukit-kutu-hiking",
+    "name": "Bukit Kutu Hiking",
+    "location": "Kampung Pertak",
+    "thumbnail": "https://placeholder.com/1200x675/bukit-kutu-summit.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/bukit-kutu-trail.jpg",
+      "https://placeholder.com/1920x1080/bukit-kutu-panoramic-view.jpg",
+      "https://placeholder.com/1920x1080/bukit-kutu-colonial-ruins.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of challenging mountain trail to Bukit Kutu summit with panoramic views and colonial ruins, Malaysian highland forest, 16:9 aspect ratio"
+  },
+  {
+    "slug": "cherandong-waterfall-trek",
+    "name": "Cherandong Waterfall Trek",
+    "location": "Cherandong",
+    "thumbnail": "https://placeholder.com/1200x675/cherandong-waterfall.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/cherandong-rainforest-trek.jpg",
+      "https://placeholder.com/1920x1080/cherandong-natural-pools.jpg",
+      "https://placeholder.com/1920x1080/cherandong-scenic-surroundings.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated photorealistic image of Cherandong waterfall with lush rainforest trek, natural pools, and scenic Malaysian jungle surroundings, 16:9 aspect ratio"
+  },
+  {
+    "slug": "chiling-waterfall-hike",
+    "name": "Chiling Waterfall Hike",
+    "location": "Chiling Fish Sanctuary",
+    "thumbnail": "https://placeholder.com/1200x675/chiling-waterfall.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/chiling-river-crossing.jpg",
+      "https://placeholder.com/1920x1080/chiling-jungle-trek.jpg",
+      "https://placeholder.com/1920x1080/chiling-waterfall-pool.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of spectacular Chiling Waterfall with river crossings, jungle trek through Malaysian rainforest, and natural pools, 16:9 aspect ratio"
+  },
+  {
+    "slug": "fishing-chiling-sanctuary",
+    "name": "Fishing at Chiling Sanctuary",
+    "location": "Chiling Fish Sanctuary",
+    "thumbnail": "https://placeholder.com/1200x675/chiling-fishing.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/chiling-fishing-river.jpg",
+      "https://placeholder.com/1920x1080/chiling-fish-sanctuary.jpg",
+      "https://placeholder.com/1920x1080/chiling-peaceful-setting.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of peaceful fishing experience at Chiling Fish Sanctuary, Malaysian river setting, catch-and-release activity, natural environment, 16:9 aspect ratio"
+  },
+  {
+    "slug": "historical-town-walk",
+    "name": "Historical Town Walk",
+    "location": "Town Center",
+    "thumbnail": "https://placeholder.com/1200x675/kkb-historical-buildings.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/kkb-colonial-architecture.jpg",
+      "https://placeholder.com/1920x1080/kkb-heritage-walk.jpg",
+      "https://placeholder.com/1920x1080/kkb-town-center.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of colonial heritage buildings and historical architecture in Kuala Kubu Bharu town center, Malaysian colonial-era architecture, 16:9 aspect ratio"
+  },
+  {
+    "slug": "hot-spring-relaxation",
+    "name": "Hot Spring Relaxation",
+    "location": "Taman Arif",
+    "thumbnail": "https://placeholder.com/1200x675/taman-arif-hot-spring.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/hot-spring-natural-pools.jpg",
+      "https://placeholder.com/1920x1080/hot-spring-relaxation.jpg",
+      "https://placeholder.com/1920x1080/hot-spring-surroundings.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of natural hot springs at Taman Arif, relaxation pools, Malaysian natural hot spring setting, peaceful environment, 16:9 aspect ratio"
+  },
+  {
+    "slug": "kelah-sanctuary-visit",
+    "name": "Kelah Sanctuary Visit",
+    "location": "Kelah Sanctuary",
+    "thumbnail": "https://placeholder.com/1200x675/kelah-sanctuary.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/kelah-fish-observation.jpg",
+      "https://placeholder.com/1920x1080/kelah-sanctuary-river.jpg",
+      "https://placeholder.com/1920x1080/kelah-educational-visit.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of Kelah Fish Sanctuary showing protected Kelah fish in natural habitat, Malaysian river ecosystem, educational family-friendly setting, 16:9 aspect ratio"
+  },
+  {
+    "slug": "kkb-street-art-walk",
+    "name": "Kuala Kubu Bharu Street Art Walk",
+    "location": "KKB Town Center",
+    "thumbnail": "https://placeholder.com/1200x675/kkb-street-art-murals.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/kkb-mural-local-life.jpg",
+      "https://placeholder.com/1920x1080/kkb-mural-history.jpg",
+      "https://placeholder.com/1920x1080/kkb-mural-nature.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of vibrant street art murals in KKB back lanes depicting local life, history, and nature, Malaysian cultural art, 16:9 aspect ratio"
+  },
+  {
+    "slug": "ltdl-climbing-route",
+    "name": "LTDL Climbing Route Cycling",
+    "location": "KKB to Fraser's Hill",
+    "thumbnail": "https://placeholder.com/1200x675/ltdl-cycling-climb.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/ltdl-rainforest-route.jpg",
+      "https://placeholder.com/1920x1080/ltdl-mountain-climb.jpg",
+      "https://placeholder.com/1920x1080/ltdl-scenic-views.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of challenging cycling route from KKB to Fraser's Hill, 40km climb with 1200m elevation gain through Malaysian rainforest, 16:9 aspect ratio"
+  },
+  {
+    "slug": "lake-pelasari-kayaking",
+    "name": "Lake Pelasari Kayaking",
+    "location": "Lake Pelasari",
+    "thumbnail": "https://placeholder.com/1200x675/pelasari-kayaking.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/pelasari-lake-scene.jpg",
+      "https://placeholder.com/1920x1080/pelasari-kayak-paddling.jpg",
+      "https://placeholder.com/1920x1080/pelasari-lush-greenery.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of serene Lake Pelasari kayaking with lush greenery and hills, Malaysian lake setting, peaceful water activity, 16:9 aspect ratio"
+  },
+  {
+    "slug": "lata-makau-jungle-trek",
+    "name": "Lata Makau Jungle Trek",
+    "location": "Lata Makau",
+    "thumbnail": "https://placeholder.com/1200x675/lata-makau-waterfall.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/lata-makau-dense-jungle.jpg",
+      "https://placeholder.com/1920x1080/lata-makau-challenging-trek.jpg",
+      "https://placeholder.com/1920x1080/lata-makau-natural-scenery.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of secluded Lata Makau waterfall with challenging trek through dense Malaysian jungle, spectacular natural scenery, 16:9 aspect ratio"
+  },
+  {
+    "slug": "lata-medang-waterfall-hike",
+    "name": "Lata Medang Waterfall Hike",
+    "location": "Lata Medang",
+    "thumbnail": "https://placeholder.com/1200x675/lata-medang-waterfall.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/lata-medang-pristine-jungle.jpg",
+      "https://placeholder.com/1920x1080/lata-medang-crystal-pools.jpg",
+      "https://placeholder.com/1920x1080/lata-medang-swimming.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of stunning Lata Medang waterfall with pristine jungle trek, crystal clear pools perfect for swimming, Malaysian hidden gem, 16:9 aspect ratio"
+  },
+  {
+    "slug": "mountain-biking-trail",
+    "name": "Mountain Biking Trail",
+    "location": "KKB Countryside",
+    "thumbnail": "https://placeholder.com/1200x675/kkb-mountain-biking.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/kkb-biking-forest-trail.jpg",
+      "https://placeholder.com/1920x1080/kkb-biking-countryside.jpg",
+      "https://placeholder.com/1920x1080/kkb-biking-scenic-route.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of scenic mountain biking trails through Malaysian forests and countryside, intermediate to advanced cycling routes, 16:9 aspect ratio"
+  },
+  {
+    "slug": "night-jungle-trek",
+    "name": "Night Jungle Trek",
+    "location": "Pertak Forest",
+    "thumbnail": "https://placeholder.com/1200x675/night-jungle-trek.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/night-trek-rainforest.jpg",
+      "https://placeholder.com/1920x1080/night-trek-wildlife.jpg",
+      "https://placeholder.com/1920x1080/night-trek-guided.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of night jungle trek in Pertak Forest exploring rainforest at night, spotting nocturnal wildlife with guide, Malaysian jungle night scene, 16:9 aspect ratio"
+  },
+  {
+    "slug": "paragliding-experience",
+    "name": "Paragliding Experience",
+    "location": "Bukit Batu Pahat",
+    "thumbnail": "https://placeholder.com/1200x675/paragliding-bukit-batu-pahat.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/paragliding-aerial-view.jpg",
+      "https://placeholder.com/1920x1080/paragliding-lush-hills.jpg",
+      "https://placeholder.com/1920x1080/paragliding-breathtaking-views.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of paragliding above lush green hills of KKB from Bukit Batu Pahat, breathtaking aerial views of Malaysian landscape, 16:9 aspect ratio, no identifiable faces"
+  },
+  {
+    "slug": "pelasari-fishing-experience",
+    "name": "Pelasari Fishing Experience",
+    "location": "Lake Pelasari",
+    "thumbnail": "https://placeholder.com/1200x675/pelasari-fishing.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/pelasari-fishing-lake.jpg",
+      "https://placeholder.com/1920x1080/pelasari-freshwater-fish.jpg",
+      "https://placeholder.com/1920x1080/pelasari-peaceful-nature.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of relaxing fishing experience at Lake Pelasari, catching local freshwater fish in peaceful Malaysian natural setting, 16:9 aspect ratio"
+  },
+  {
+    "slug": "stargazing-selangor-dam",
+    "name": "Stargazing at Selangor Dam",
+    "location": "Sungai Selangor Dam",
+    "thumbnail": "https://placeholder.com/1200x675/selangor-dam-stargazing.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/stargazing-night-sky.jpg",
+      "https://placeholder.com/1920x1080/stargazing-constellations.jpg",
+      "https://placeholder.com/1920x1080/stargazing-dam-setting.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of stargazing at Sungai Selangor Dam, stunning night sky with stars and constellations, away from city lights, Malaysian dam setting, 16:9 aspect ratio"
+  },
+  {
+    "slug": "taman-milenium-lake-walk",
+    "name": "Taman Milenium Lake Walk",
+    "location": "Taman Tasik Milenium",
+    "thumbnail": "https://placeholder.com/1200x675/taman-milenium-lake.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/milenium-lake-views.jpg",
+      "https://placeholder.com/1920x1080/milenium-jogging-tracks.jpg",
+      "https://placeholder.com/1920x1080/milenium-peaceful-walk.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of peaceful walk around Taman Tasik Milenium with beautiful lake views, jogging tracks, perfect for morning or evening strolls in Malaysian park setting, 16:9 aspect ratio"
+  },
+  {
+    "slug": "white-water-rafting",
+    "name": "White Water Rafting",
+    "location": "Sungai Selangor",
+    "thumbnail": "https://placeholder.com/1200x675/selangor-rafting.jpg",
+    "gallery": [
+      "https://placeholder.com/1920x1080/rafting-rapids.jpg",
+      "https://placeholder.com/1920x1080/rafting-river-adventure.jpg",
+      "https://placeholder.com/1920x1080/rafting-team-action.jpg"
+    ],
+    "imageSource": "generated",
+    "reason": "Generated image of adrenaline-pumping white water rafting on Selangor River, rapids and river adventure, suitable for beginners and intermediates, Malaysian river setting, 16:9 aspect ratio, no identifiable faces"
+  }
+]
+

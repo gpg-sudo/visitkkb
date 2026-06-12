@@ -1,0 +1,297 @@
+[
+  {
+    "slug": "white-water-rafting-sungai-selangor",
+    "name": "White Water Rafting",
+    "location": "Sungai Selangor",
+    "description": "Adrenaline rafting on Selangor River",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Sungai_Selangor",
+    "source": "Wikimedia Commons / Google Maps Photos",
+    "whyThisImageIsCorrect": "Sungai Selangor is a real river in Selangor, Malaysia. Accurate photos should show brown/muddy tropical river with rafting boats, dense Malaysian rainforest banks, and rocky riverbed. Search Wikimedia Commons or Google Maps user photos for 'Sungai Selangor rafting' or 'Selangor River white water'.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY search: 'Sungai Selangor rafting Malaysia'",
+      "Google Maps Street View or user photos of Sungai Selangor river"
+    ]
+  },
+  {
+    "slug": "chiling-waterfall-hike-chiling-fish-sanctuary",
+    "name": "Chiling Waterfall Hike",
+    "location": "Chiling Fish Sanctuary",
+    "description": "Jungle river crossings to large waterfall",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Chiling_Waterfall",
+    "source": "Wikimedia Commons / Flickr CC-BY",
+    "whyThisImageIsCorrect": "Chiling Waterfall is a well-documented tourist destination in Selangor. Accurate photos show multi-tier waterfall, clear shallow river crossings, dense Malaysian rainforest, and smooth rocks. Many travel bloggers and photographers have documented this location.",
+    "isPerfectMatch": true,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: Search 'Chiling Waterfall Malaysia'",
+      "Google Maps photos of Chiling Fish Sanctuary location"
+    ]
+  },
+  {
+    "slug": "paragliding-experience-bukit-batu-pahat",
+    "name": "Paragliding Experience",
+    "location": "Bukit Batu Pahat",
+    "description": "Aerial views over green hills",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Bukit_Batu_Pahat",
+    "source": "Wikimedia Commons / Google Maps Photos",
+    "whyThisImageIsCorrect": "Bukit Batu Pahat is a specific hill in Kuala Kubu Bharu. Accurate photos should show paragliders launching from hilltop, rolling tropical hills covered in Malaysian rainforest (not alpine), and valley views. Search for 'Bukit Batu Pahat paragliding' or 'KKB paragliding'.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Bukit Batu Pahat Malaysia'",
+      "Google Maps satellite/aerial view of Bukit Batu Pahat location"
+    ]
+  },
+  {
+    "slug": "historical-town-walk-town-center",
+    "name": "Historical Town Walk",
+    "location": "Town Center",
+    "description": "Colonial shophouses, murals, old buildings",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Kuala_Kubu_Bharu",
+    "source": "Wikimedia Commons / Flickr CC-BY",
+    "whyThisImageIsCorrect": "Kuala Kubu Bharu town center has distinctive colonial-era Malaysian shophouses with five-foot walkways, pastel facades, and narrow streets. Accurate photos show these architectural features with tropical mountains in background. Many local photographers document Malaysian heritage towns.",
+    "isPerfectMatch": true,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Kuala Kubu Bharu town' or 'KKB shophouses'",
+      "Google Maps Street View of Jalan Dato' Muda Jaafar or main street"
+    ]
+  },
+  {
+    "slug": "night-jungle-trek-pertak-forest",
+    "name": "Night Jungle Trek",
+    "location": "Pertak Forest",
+    "description": "Dark rainforest trail with headlamps",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Pertak_Forest",
+    "source": "Wikimedia Commons / Flickr CC-BY",
+    "whyThisImageIsCorrect": "Pertak Forest is part of the Hulu Selangor rainforest. Accurate photos show narrow muddy trails, dense tropical broadleaf forest, headlamp beams, and dark night atmosphere. Search for 'Pertak Forest night trek' or 'Malaysian rainforest night'.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Pertak Forest Malaysia' or 'night jungle trek Malaysia'",
+      "Generic Malaysian rainforest night photos (if Pertak-specific not available)"
+    ]
+  },
+  {
+    "slug": "bukit-kutu-hiking-kampung-pertak",
+    "name": "Bukit Kutu Hiking",
+    "location": "Kampung Pertak",
+    "description": "Summit with panoramic views and rock boulders",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Bukit_Kutu",
+    "source": "Wikimedia Commons / Flickr CC-BY",
+    "whyThisImageIsCorrect": "Bukit Kutu is a well-known hiking destination with colonial chimney ruins at summit. Accurate photos show granite boulders, panoramic views of Malaysian tropical hills, and old ruins. Many hikers document this trail on Flickr and travel blogs.",
+    "isPerfectMatch": true,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Bukit Kutu Malaysia' or 'Gunung Kutu'",
+      "Google Maps photos of Bukit Kutu summit location"
+    ]
+  },
+  {
+    "slug": "hot-spring-relaxation-taman-arif",
+    "name": "Hot Spring Relaxation",
+    "location": "Taman Arif",
+    "description": "Natural hot spring pools in jungle",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Taman_Arif_Hot_Springs",
+    "source": "Wikimedia Commons / Flickr CC-BY",
+    "whyThisImageIsCorrect": "Taman Arif is a known hot spring location in Selangor. Accurate photos show natural stone pools, steam rising, surrounded by tropical Malaysian jungle. Search for 'Taman Arif hot spring' or 'Selangor hot spring'.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Taman Arif Malaysia' or 'Selangor hot spring'",
+      "Google Maps photos of Taman Arif location"
+    ]
+  },
+  {
+    "slug": "stargazing-at-selangor-dam-sungai-selangor-dam",
+    "name": "Stargazing at Selangor Dam",
+    "location": "Selangor Dam",
+    "description": "Night sky over the iconic dam",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Selangor_Dam",
+    "source": "Wikimedia Commons / Google Maps Photos",
+    "whyThisImageIsCorrect": "Selangor Dam (Sungai Selangor Dam) has a distinctive curved concrete structure. Accurate photos show the dam silhouette against night sky, calm reservoir, and starry background. This is a documented location with many visitor photos.",
+    "isPerfectMatch": true,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Selangor Dam' or 'Sungai Selangor Dam'",
+      "Google Maps photos of Selangor Dam location"
+    ]
+  },
+  {
+    "slug": "fishing-at-chiling-sanctuary-chiling-fish-sanctuary",
+    "name": "Fishing at Chiling Sanctuary",
+    "location": "Chiling Fish Sanctuary",
+    "description": "Clean river, calm pools",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Chiling_Fish_Sanctuary",
+    "source": "Wikimedia Commons / Flickr CC-BY",
+    "whyThisImageIsCorrect": "Chiling Fish Sanctuary is the same location as Chiling Waterfall area. Accurate photos show clear shallow tropical river, smooth rocks, people fishing, and dense Malaysian rainforest. This location is heavily documented by visitors.",
+    "isPerfectMatch": true,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Chiling Fish Sanctuary' or 'Chiling fishing'",
+      "Same sources as Chiling Waterfall (same location)"
+    ]
+  },
+  {
+    "slug": "atv-adventure-trail-pertak-forest",
+    "name": "ATV Adventure Trail",
+    "location": "Pertak Forest",
+    "description": "Muddy jungle trails",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Pertak_Forest",
+    "source": "Flickr CC-BY / Google Maps Photos",
+    "whyThisImageIsCorrect": "Pertak Forest ATV trails show muddy jungle paths, ATV vehicles, and dense Malaysian rainforest. Search for 'Pertak ATV' or 'Malaysian jungle ATV trail'. If Pertak-specific not available, use generic Malaysian jungle trail with ATV.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Pertak ATV' or 'Malaysian jungle ATV'",
+      "Generic Malaysian rainforest trail photos (if activity-specific not found)"
+    ]
+  },
+  {
+    "slug": "mountain-biking-trail-kkb-countryside",
+    "name": "Mountain Biking Trail",
+    "location": "KKB Countryside",
+    "description": "Forest singletrack, rolling hills",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Kuala_Kubu_Bharu",
+    "source": "Flickr CC-BY / Wikimedia Commons",
+    "whyThisImageIsCorrect": "KKB countryside shows Malaysian rubber estates, tropical forest singletrack, and rolling green hills. Accurate photos show narrow trails through rubber plantations or tropical forest, not alpine terrain. Search for 'Kuala Kubu Bharu mountain biking' or 'Malaysian countryside trail'.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Malaysian mountain biking' or 'Selangor countryside trail'",
+      "Generic Malaysian rural trail photos"
+    ]
+  },
+  {
+    "slug": "lata-medang-waterfall-hike-lata-medang",
+    "name": "Lata Medang Waterfall Hike",
+    "location": "Lata Medang",
+    "description": "Tall waterfall inside rainforest",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Lata_Medang",
+    "source": "Wikimedia Commons / Flickr CC-BY",
+    "whyThisImageIsCorrect": "Lata Medang is a documented waterfall in Selangor. Accurate photos show tall cascading waterfall inside dense Malaysian tropical rainforest, green-brown water, mossy rocks, and broadleaf vegetation. Many hikers document this location.",
+    "isPerfectMatch": true,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Lata Medang Malaysia' or 'Lata Medang waterfall'",
+      "Google Maps photos of Lata Medang location"
+    ]
+  },
+  {
+    "slug": "cherandong-waterfall-trek-cherandong",
+    "name": "Cherandong Waterfall Trek",
+    "location": "Cherandong",
+    "description": "Tropical cascade, deep jungle",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Cherandong_Waterfall",
+    "source": "Flickr CC-BY / Wikimedia Commons",
+    "whyThisImageIsCorrect": "Cherandong is a known waterfall location in Selangor. Accurate photos show tropical cascading waterfall, deep Malaysian rainforest, rocky riverbed, and humid jungle atmosphere. Search for 'Cherandong waterfall Malaysia'.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Cherandong waterfall' or 'Cherandong Malaysia'",
+      "Generic Malaysian rainforest waterfall (if Cherandong-specific not available)"
+    ]
+  },
+  {
+    "slug": "lata-makau-jungle-trek-lata-makau",
+    "name": "Lata Makau Jungle Trek",
+    "location": "Lata Makau",
+    "description": "Dense remote forest, steep terrain",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Lata_Makau",
+    "source": "Flickr CC-BY / Wikimedia Commons",
+    "whyThisImageIsCorrect": "Lata Makau is a remote waterfall/jungle location. Accurate photos show dense Malaysian tropical rainforest, steep muddy terrain, roots and rocks, and challenging jungle trek. Search for 'Lata Makau Malaysia' or 'Lata Makau jungle'.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Lata Makau' or 'Malaysian deep jungle trek'",
+      "Generic Malaysian rainforest trek photos"
+    ]
+  },
+  {
+    "slug": "kelah-sanctuary-visit-kelah-sanctuary",
+    "name": "Kelah Sanctuary Visit",
+    "location": "Kelah Sanctuary",
+    "description": "Clear water pools, fish sanctuary",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Kelah_Fish_Sanctuary",
+    "source": "Wikimedia Commons / Flickr CC-BY",
+    "whyThisImageIsCorrect": "Kelah Sanctuary is a fish sanctuary in Selangor. Accurate photos show clear tropical river water with large Kelah fish, wooden platforms, and dense Malaysian rainforest background. Search for 'Kelah Sanctuary Malaysia' or 'Kelah fish sanctuary'.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Kelah Sanctuary' or 'Kelah fish Malaysia'",
+      "Generic Malaysian river fish sanctuary photos"
+    ]
+  },
+  {
+    "slug": "ampang-pecah-historic-site-ampang-pecah",
+    "name": "Ampang Pecah Historic Site",
+    "location": "Ampang Pecah",
+    "description": "Old dam ruins and riverbanks",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Ampang_Pecah",
+    "source": "Wikimedia Commons / Google Maps Photos",
+    "whyThisImageIsCorrect": "Ampang Pecah is a historic site with old dam ruins. Accurate photos show old concrete dam remnants, grassy riverbank, calm tropical river, and Malaysian jungle hills in background. Search for 'Ampang Pecah dam ruins' or 'Ampang Pecah historic'.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Ampang Pecah Malaysia' or 'Ampang Pecah dam'",
+      "Google Maps photos of Ampang Pecah location"
+    ]
+  },
+  {
+    "slug": "taman-milenium-lake-walk-taman-tasik-milenium",
+    "name": "Taman Milenium Lake Walk",
+    "location": "Taman Tasik Milenium",
+    "description": "Lake with walking tracks",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Taman_Tasik_Milenium",
+    "source": "Google Maps Photos / Flickr CC-BY",
+    "whyThisImageIsCorrect": "Taman Tasik Milenium is a park in Kuala Kubu Bharu. Accurate photos show man-made lake, paved walking paths, tropical trees, and park setting. Search Google Maps for 'Taman Tasik Milenium KKB' for user-uploaded photos.",
+    "isPerfectMatch": true,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Taman Tasik Milenium' or 'KKB lake park'",
+      "Google Maps Street View and photos of Taman Tasik Milenium"
+    ]
+  },
+  {
+    "slug": "lake-pelasari-kayaking-lake-pelasari",
+    "name": "Lake Pelasari Kayaking",
+    "location": "Lake Pelasari",
+    "description": "Calm lake with hills",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Lake_Pelasari",
+    "source": "Google Maps Photos / Flickr CC-BY",
+    "whyThisImageIsCorrect": "Lake Pelasari is a reservoir in Selangor. Accurate photos show wide calm lake, kayaks on water, tropical hills surrounding, and Malaysian rainforest on shores. Search Google Maps for 'Lake Pelasari' or 'Tasik Pelasari'.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Lake Pelasari' or 'Tasik Pelasari Malaysia'",
+      "Google Maps satellite view and photos of Lake Pelasari"
+    ]
+  },
+  {
+    "slug": "pelasari-fishing-experience-lake-pelasari",
+    "name": "Pelasari Fishing Experience",
+    "location": "Lake Pelasari",
+    "description": "Lake shore fishing",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Lake_Pelasari",
+    "source": "Google Maps Photos / Flickr CC-BY",
+    "whyThisImageIsCorrect": "Same location as Lake Pelasari kayaking. Accurate photos show angler fishing from boat or shore, calm lake water, rod cast out, and tropical hills. Use same sources as Lake Pelasari kayaking.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Lake Pelasari fishing' or 'Tasik Pelasari'",
+      "Same sources as Lake Pelasari kayaking"
+    ]
+  },
+  {
+    "slug": "kuala-kubu-bharu-street-art-walk-town-center",
+    "name": "Kuala Kubu Bharu Street Art Walk",
+    "location": "Town Center",
+    "description": "Murals, old town, shophouses",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Kuala_Kubu_Bharu",
+    "source": "Flickr CC-BY / Google Maps Photos",
+    "whyThisImageIsCorrect": "KKB has street art murals on shophouse walls. Accurate photos show colorful murals on colonial-era building walls, narrow back lanes, and Malaysian town architecture. Search for 'Kuala Kubu Bharu street art' or 'KKB murals'.",
+    "isPerfectMatch": true,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Kuala Kubu Bharu street art' or 'KKB murals'",
+      "Google Maps Street View of KKB back lanes with murals"
+    ]
+  },
+  {
+    "slug": "ltdl-climbing-route-cycling-kkb-to-frasers-hill",
+    "name": "LTDL Climbing Route Cycling",
+    "location": "KKB to Fraser's Hill",
+    "description": "Steep tropical road ascent",
+    "recommendedImageUrl": "https://commons.wikimedia.org/wiki/Category:Fraser%27s_Hill",
+    "source": "Wikimedia Commons / Flickr CC-BY",
+    "whyThisImageIsCorrect": "The road from KKB to Fraser's Hill is a famous cycling route. Accurate photos show steep winding road through Malaysian tropical rainforest, broadleaf forest on both sides, rubber plantations visible, and cyclists climbing. Search for 'KKB to Fraser's Hill cycling' or 'LTDL route'.",
+    "isPerfectMatch": false,
+    "fallbackAlternatives": [
+      "Flickr CC-BY: 'Fraser's Hill cycling' or 'KKB Fraser's Hill road'",
+      "Google Maps Street View of the road route"
+    ]
+  }
+]
+

@@ -1,0 +1,1329 @@
+// Enhanced Prisma Schema for VisitKKB - Complete User & Booking System
+// Phase 1: Database Schema Implementation
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// USER MANAGEMENT
+// ============================================================================
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  name          String?
+  password      String
+  phone         String?
+  avatar        String?
+  role          String    @default("USER") // USER, OPERATOR, AGENT, ADMIN, CO_ADMIN, GUIDE
+  emailVerified DateTime?
+  
+  // Enhanced user profile fields
+  country       String?   // User's country
+  language      String    @default("en") // Preferred language (en, ms, zh)
+  whatsapp      String?   // WhatsApp number for notifications
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  bookings      Booking[]
+  reviews       Review[]
+  sessions      Session[]
+  cartItems     CartItem[]
+  sentMessages  Message[]  @relation("SentMessages")
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ============================================================================
+// GUIDE MANAGEMENT
+// ============================================================================
+
+model Guide {
+  id            String   @id @default(uuid())
+  userId        String?  @unique // Link to User if guide has login account
+  name          String
+  phone         String
+  whatsapp      String?
+  email         String?
+  bio           String?
+  photo         String?
+  specialties   String   // Comma-separated: hiking, rafting, paragliding
+  languages     String   @default("en,ms") // Languages guide speaks
+  verified      Boolean  @default(false)
+  rating        Float    @default(0.0)
+  totalTrips    Int      @default(0)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  trips         Trip[]
+}
+
+// ============================================================================
+// INVENTORY MANAGEMENT
+// ============================================================================
+
+model Activity {
+  id              String   @id @default(uuid())
+  title           String
+  slug            String   @unique
+  description     String
+  longDescription String?
+  image           String
+  gallery         String   // JSON string of image URLs
+  location        String
+  coordinates     String?  // JSON string {lat, lng}
+  pricePerPerson  Float
+  difficulty      String
+  duration        String
+  maxParticipants Int
+  tags            String   // Comma-separated tags
+  operatorId      String
+  status          String   @default("ACTIVE") // ACTIVE, INACTIVE, ARCHIVED
+  
+  // Booking requirements
+  requiresParticipantDetails Boolean @default(true)
+  minAge          Int?     // Minimum age requirement
+  
+  // AI Image Generation Tracking
+  imageSource     String?  // MANUAL, GOOGLE_MAPS, SERPAPI, AI_GENERATED_FALLBACK
+  imagePrompt     String?  // The AI prompt used to generate the main image
+  galleryPrompts  String?  // JSON array of prompts for gallery images
+  imagesGeneratedAt DateTime? // When AI images were generated
+  serpPlaceId     String?  @unique // SerpAPI place_id for deduplication
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  operator     Operator       @relation(fields: [operatorId], references: [id])
+  trips        Trip[]
+  bookings     Booking[]
+  reviews      Review[]
+  availability Availability[]
+  cartItems    CartItem[]
+  mapPins      MapPin[]
+}
+
+model Trip {
+  id              String   @id @default(uuid())
+  activityId      String
+  guideId         String?  // Assigned guide
+  
+  // Schedule
+  startDate       DateTime
+  endDate         DateTime?
+  meetingPoint    String
+  meetingTime     String   // e.g., "09:00 AM"
+  
+  // Capacity
+  maxParticipants Int
+  bookedSlots     Int      @default(0)
+  
+  // Status
+  status          String   @default("SCHEDULED") // SCHEDULED, CONFIRMED, COMPLETED, CANCELLED
+  notes           String?  // Internal notes
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  activity        Activity @relation(fields: [activityId], references: [id])
+  guide           Guide?   @relation(fields: [guideId], references: [id])
+  bookings        Booking[]
+  cartItems       CartItem[]
+  
+  @@index([activityId, startDate])
+  @@index([guideId, startDate])
+}
+
+model Stay {
+  id              String   @id @default(uuid())
+  title           String
+  slug            String   @unique
+  description     String
+  shortDescription String?
+  longDescription String?
+  image           String
+  gallery         String   // JSON string
+  location        String
+  coordinates     String?  // JSON string {lat, lng}
+  lat             Float?
+  lng             Float?
+  pricePerNight   Float
+  type            String   // HOTEL, HOMESTAY, HOSTEL, RESORT, CHALET, CAMPING, GLAMPING, APARTMENT
+  amenities       String   // Comma-separated
+  maxGuests       Int
+  rooms           Int
+  operatorId      String?  // Nullable for external listings
+  status          String   @default("PUBLISHED") // PUBLISHED, DRAFT, HIDDEN
+  
+  // Data source tracking
+  sourceType      String   @default("MANUAL") // MANUAL, GOOGLE_PLACES, BOOKING_COM, AGODA, SERPAPI
+  externalPlaceId String?  // Google Place ID or external system ID
+  bookingPlaceId  String?  @unique // Booking.com hotel ID
+  serpPlaceId     String?  @unique // SerpAPI place_id for deduplication
+  rawMeta         String?  // Raw SerpAPI JSON response for debugging
+  lastSyncedAt    DateTime? // Last sync timestamp for external sources
+  
+  // Ranking & display
+  rankingScore    Float    @default(0)  // Combined score for sorting
+  rating          Float    @default(0)
+  reviewCount     Int      @default(0)
+  priceFrom       Float?   // Minimum price (for external data)
+  currency        String   @default("MYR")
+  isFeatured      Boolean  @default(false)
+  
+  // Affiliate integration
+  affiliateMatchName  String?  // Canonical name for affiliate matching
+  affiliateProvider   String?  // Primary affiliate: BOOKING_COM, AGODA, EXPEDIA, etc.
+  affiliateDeepLink   String?  // Direct affiliate URL (override)
+  autoMatchEnabled    Boolean  @default(true)
+  
+  // Experience tags for filtering
+  experienceTags  String?  // JSON array: ["family_friendly", "romantic", "nature_retreat", "adventure_base"]
+  
+  // Booking settings
+  minNights       Int      @default(1)
+  maxNights       Int      @default(30)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  operator     Operator?      @relation(fields: [operatorId], references: [id])
+  bookings     Booking[]
+  reviews      Review[]
+  availability Availability[]
+  cartItems    CartItem[]
+  mapPins      MapPin[]
+  affiliateLogs AffiliateMatchLog[]
+  
+  @@index([type])
+  @@index([sourceType])
+  @@index([isFeatured])
+  @@index([rankingScore])
+}
+
+model Restaurant {
+  id              String   @id @default(uuid())
+  name            String
+  slug            String   @unique
+  description     String?  // Made optional for SerpAPI sync
+  shortDescription String?
+  longDescription String?
+  image           String?  // Made optional for SerpAPI sync
+  gallery         String?  // JSON string - Made optional for SerpAPI sync
+  location        String   // Display location name (e.g., "KKB Town Center")
+  coordinates     String?  // JSON string {lat, lng}
+  lat             Float?
+  lng             Float?
+  
+  // Type and categorization
+  type            String   @default("RESTAURANT") // CAFE, RESTAURANT, WARUNG, STREET_FOOD, DESSERT, BAKERY, MAMAK
+  cuisine         String?  // Primary cuisine type - Made optional for SerpAPI sync
+  cuisineTags     String?  // JSON array: ["MALAY", "CHINESE", "INDIAN", "WESTERN", "FUSION"]
+  priceRange      String?  // $, $$, $$$ - Made optional for SerpAPI sync
+  priceLevel      Int?     // 1-4 numeric for sorting
+  specialties     String?  // Comma-separated signature dishes - Made optional for SerpAPI sync
+  
+  // Operating hours
+  hours           String?  // Human readable hours (legacy/fallback) - Made optional for SerpAPI sync
+  opensAt         String?  // Opening time e.g. "08:00" (legacy)
+  closesAt        String?  // Closing time e.g. "22:00" (legacy)
+  openDays        String?  // JSON array of open days ["MON", "TUE", ...] (legacy)
+  operatingHoursJson String? // Structured weekly schedule JSON
+  hoursVerified   Boolean  @default(false) // Whether hours have been verified/completed
+  
+  // Dietary & preferences
+  isHalal         Boolean  @default(false)
+  isVegetarianFriendly Boolean @default(false)
+  
+  // Data source tracking
+  sourceType      String   @default("MANUAL") // MANUAL, GOOGLE_PLACES, SERPAPI
+  googlePlaceId   String?  // Google Places API ID
+  serpPlaceId     String?  @unique // SerpAPI place_id for deduplication
+  rawMeta         String?  // Raw SerpAPI JSON response for debugging
+  
+  // Ranking & display
+  rating          Float    @default(0)
+  reviewCount     Int      @default(0)
+  rankingScore    Float    @default(0)
+  isFeatured      Boolean  @default(false)
+  
+  // Food delivery affiliate integration
+  affiliateMatchName      String?  // Canonical name for matching
+  primaryAffiliateProvider String? // FOODPANDA, GRABFOOD, SHOPEEFOOD
+  foodpandaSlug           String?  // Direct slug for Foodpanda
+  grabfoodSlug            String?  // Direct slug for GrabFood
+  shopeefoodSlug          String?  // Direct slug for ShopeeFood
+  affiliateDeepLink       String?  // Direct URL override
+  autoMatchEnabled        Boolean  @default(true)
+  
+  // Relationships
+  operatorId      String?  // Nullable for external listings
+  status          String   @default("PUBLISHED") // PUBLISHED, DRAFT, HIDDEN
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  operator Operator? @relation(fields: [operatorId], references: [id])
+  reviews  Review[]
+  mapPins  MapPin[]
+  affiliateLogs AffiliateMatchLog[]
+  
+  @@index([type])
+  @@index([sourceType])
+  @@index([isFeatured])
+  @@index([isHalal])
+  @@index([rankingScore])
+}
+
+model Operator {
+  id          String   @id @default(uuid())
+  name        String
+  email       String   @unique
+  phone       String
+  description String?
+  logo        String?
+  verified    Boolean  @default(false)
+  type        String   @default("OPERATOR") // OPERATOR or AGENT
+  commission  Float    @default(0.0)
+  whatsapp    String?  // For WhatsApp notifications
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  activities   Activity[]
+  stays        Stay[]
+  restaurants  Restaurant[]
+  availability Availability[]
+}
+
+// ============================================================================
+// SHOPPING CART
+// ============================================================================
+
+model CartItem {
+  id            String   @id @default(uuid())
+  userId        String?  // Null for guest carts (localStorage)
+  sessionId     String?  // For guest cart tracking
+  
+  // What's being booked
+  itemType      String   // ACTIVITY, TRIP, STAY
+  activityId    String?
+  tripId        String?
+  stayId        String?
+  
+  // Booking details
+  date          DateTime // Start date
+  endDate       DateTime? // For stays (check-out date)
+  participants  Int      @default(1)
+  
+  // Price snapshot (preserve pricing at time of add-to-cart)
+  pricePerUnit  Float
+  totalPrice    Float
+  
+  // Additional options (stored as JSON)
+  addOns        String?  // JSON: {insurance: true, equipment: ["helmet", "gloves"], etc}
+  
+  status        String   @default("ACTIVE") // ACTIVE, CHECKED_OUT, EXPIRED
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  expiresAt     DateTime? // Cart items expire after 24 hours
+  
+  user          User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activity      Activity? @relation(fields: [activityId], references: [id])
+  trip          Trip?     @relation(fields: [tripId], references: [id])
+  stay          Stay?     @relation(fields: [stayId], references: [id])
+  
+  @@index([userId])
+  @@index([sessionId])
+  @@index([expiresAt])
+}
+
+// ============================================================================
+// BOOKINGS & RESERVATIONS
+// ============================================================================
+
+model Booking {
+  id              String    @id @default(uuid())
+  userId          String
+  bookingType     String    // ACTIVITY, TRIP, STAY
+  
+  activityId      String?
+  tripId          String?
+  stayId          String?
+  
+  startDate       DateTime
+  endDate         DateTime?
+  participants    Int       @default(1)
+  totalAmount     Float
+  
+  status          String    @default("PENDING") // PENDING, CONFIRMED, CANCELLED, COMPLETED
+  paymentStatus   String    @default("PENDING") // PENDING, PAID, FAILED, REFUNDED
+  paymentIntentId String?
+  
+  // Customer details (JSON string)
+  customerDetails String    // {name, email, phone, country, whatsapp}
+  specialRequests String?
+  
+  // Add-ons from cart
+  addOns          String?   // JSON from cart item
+  
+  // Confirmation
+  confirmationCode String   @unique // e.g., "VKB-20231128-A1B2"
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  user             User                  @relation(fields: [userId], references: [id])
+  activity         Activity?             @relation(fields: [activityId], references: [id])
+  trip             Trip?                 @relation(fields: [tripId], references: [id])
+  stay             Stay?                 @relation(fields: [stayId], references: [id])
+  
+  payment          Payment?
+  participantDetails BookingParticipant[]  // Renamed from participants to avoid conflict
+  notifications    Notification[]
+  messages         Message[]
+  
+  @@index([userId, createdAt])
+  @@index([confirmationCode])
+  @@index([status, paymentStatus])
+}
+
+model BookingParticipant {
+  id               String   @id @default(uuid())
+  bookingId        String
+  
+  name             String
+  email            String?
+  phone            String?
+  age              Int?
+  emergencyContact String?
+  emergencyPhone   String?
+  specialNeeds     String?
+  dietaryReqs      String?
+  
+  createdAt        DateTime @default(now())
+  
+  booking          Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  
+  @@index([bookingId])
+}
+
+model Payment {
+  id            String   @id @default(uuid())
+  bookingId     String   @unique
+  amount        Float
+  currency      String   @default("MYR")
+  provider      String   // STRIPE, PAYPAL, MOCK, etc.
+  transactionId String
+  status        String   // PENDING, PAID, FAILED, REFUNDED
+  metadata      String?  // JSON string
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  booking Booking @relation(fields: [bookingId], references: [id])
+}
+
+// ============================================================================
+// COMMUNICATION
+// ============================================================================
+
+model Message {
+  id            String   @id @default(uuid())
+  bookingId     String?  // Related booking (optional)
+  
+  senderId      String   // User ID
+  receiverType  String   // OPERATOR, GUIDE, ADMIN, USER
+  receiverId    String?  // Target user/operator ID (null for system messages)
+  
+  subject       String?
+  content       String
+  type          String   @default("USER_TO_OPERATOR") // USER_TO_OPERATOR, OPERATOR_TO_USER, SYSTEM
+  
+  read          Boolean  @default(false)
+  readAt        DateTime?
+  
+  createdAt     DateTime @default(now())
+  
+  sender        User     @relation("SentMessages", fields: [senderId], references: [id])
+  booking       Booking? @relation(fields: [bookingId], references: [id])
+  
+  @@index([bookingId])
+  @@index([senderId, receiverId])
+  @@index([read, createdAt])
+}
+
+// ============================================================================
+// REVIEWS & RATINGS
+// ============================================================================
+
+model Review {
+  id           String   @id @default(uuid())
+  userId       String
+  activityId   String?
+  stayId       String?
+  restaurantId String?
+  rating       Int
+  title        String?
+  content      String
+  images       String?  // JSON array as string
+  verified     Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user       User        @relation(fields: [userId], references: [id])
+  activity   Activity?   @relation(fields: [activityId], references: [id])
+  stay       Stay?       @relation(fields: [stayId], references: [id])
+  restaurant Restaurant? @relation(fields: [restaurantId], references: [id])
+  
+  @@index([activityId, createdAt])
+  @@index([stayId, createdAt])
+  @@index([restaurantId, createdAt])
+}
+
+// ============================================================================
+// AVAILABILITY & SCHEDULING
+// ============================================================================
+
+model Availability {
+  id         String   @id @default(uuid())
+  operatorId String
+  activityId String?
+  stayId     String?
+  date       DateTime
+  slots      Int      // Available slots
+  isBlocked  Boolean  @default(false)
+
+  operator Operator  @relation(fields: [operatorId], references: [id])
+  activity Activity? @relation(fields: [activityId], references: [id])
+  stay     Stay?     @relation(fields: [stayId], references: [id])
+
+  @@index([date, operatorId])
+  @@index([activityId, date])
+  @@index([stayId, date])
+}
+
+// ============================================================================
+// NOTIFICATIONS
+// ============================================================================
+
+model Notification {
+  id        String    @id @default(uuid())
+  userId    String?
+  bookingId String?
+  type      String    // BOOKING_CONFIRMATION, BOOKING_REMINDER, PAYMENT_RECEIVED, etc.
+  channel   String    // EMAIL, SMS, WHATSAPP, IN_APP
+  recipient String
+  subject   String?
+  content   String
+  status    String    @default("pending")
+  sentAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  booking Booking? @relation(fields: [bookingId], references: [id])
+  
+  @@index([userId, createdAt])
+  @@index([status, createdAt])
+}
+
+// ============================================================================
+// CONTENT MANAGEMENT
+// ============================================================================
+
+model PageContent {
+  id        String   @id @default(uuid())
+  pageSlug  String   // e.g. "home", "about"
+  sectionId String   // e.g. "hero", "features"
+  content   String   // JSON or HTML
+  updatedAt DateTime @updatedAt
+
+  @@unique([pageSlug, sectionId])
+}
+
+model SystemSetting {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       String
+  category    String   // API, PAYMENT, NOTIFICATION, GENERAL
+  description String?
+  isEncrypted Boolean  @default(false)
+  updatedAt   DateTime @updatedAt
+}
+
+// ============================================================================
+// ANALYTICS
+// ============================================================================
+
+model Analytics {
+  id        String   @id @default(uuid())
+  event     String
+  userId    String?
+  sessionId String?
+  metadata  String?  // JSON string
+  createdAt DateTime @default(now())
+
+  @@index([event, createdAt])
+  @@index([userId, createdAt])
+}
+
+// ============================================================================
+// MAP CONFIGURATION
+// ============================================================================
+
+model MapSettings {
+  id               String   @id @default(uuid())
+  provider         String   @default("osm") // osm, google, mapbox, leaflet
+  defaultCenterLat Float    @default(3.5410)   // KKB default latitude
+  defaultCenterLng Float    @default(101.6900) // KKB default longitude
+  defaultZoom      Int      @default(13)
+  
+  // OSM-specific configuration
+  tileProvider     String   @default("OSM") // OSM, MapTiler, Carto, Stadia
+  tileUrl          String   @default("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
+  attribution      String   @default("© OpenStreetMap contributors")
+  
+  // Geocoding configuration
+  geocodeProvider  String   @default("nominatim") // nominatim, geocode.earth, locationiq
+  geocodeApiKey    String?  // For paid providers
+  
+  // Routing configuration
+  routingProvider  String   @default("osrm") // osrm, graphhopper
+  routingApiKey    String?  // For paid providers
+  
+  // Clustering settings
+  enableClustering Boolean  @default(true)
+  clusterRadius    Int      @default(50) // Cluster radius in pixels
+  
+  // Layer visibility toggles
+  showActivities   Boolean  @default(true)
+  showStays        Boolean  @default(true)
+  showDining       Boolean  @default(true)
+  showPOI          Boolean  @default(true)
+  
+  // Per-category marker styles (JSON format)
+  // Example: {"ACTIVITY":{"color":"#0ea5e9","size":32,"icon":"📍"},...}
+  markerStyles     String   @default("{}")
+  
+  mapStyleJson     String?  // Custom map style JSON
+  showOnNavbar     Boolean  @default(true)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model MapPin {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  description String?
+  category    String   // HOT_SPRING, WATERFALL, HIKING, TOWN, HISTORY, DINING, ACTIVITY, STAY, etc.
+  lat         Float
+  lng         Float
+  address     String?
+  
+  // Link configuration
+  linkType    String   @default("none") // none, activity, stay, restaurant, external
+  activityId  String?
+  stayId      String?
+  restaurantId String?
+  externalUrl String?
+  
+  // Display options
+  iconType    String   @default("default") // waterfall, hot_spring, hiking, raft, paraglide, restaurant, hotel, etc.
+  isVisible   Boolean  @default(true)
+  public      Boolean  @default(true)
+  priority    Int      @default(0)         // Higher = more prominent
+  
+  // SerpAPI integration
+  serpPlaceId String?  @unique // SerpAPI place_id for deduplication
+  thumbnail   String?  // Thumbnail image URL
+  rawMeta     String?  // Raw SerpAPI JSON response for debugging
+  sourceType  String   @default("MANUAL") // MANUAL, SERPAPI, GOOGLE_PLACES
+  
+  // Admin tracking
+  createdById String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  activity    Activity?   @relation(fields: [activityId], references: [id])
+  stay        Stay?       @relation(fields: [stayId], references: [id])
+  restaurant  Restaurant? @relation(fields: [restaurantId], references: [id])
+  
+  @@index([category])
+  @@index([isVisible])
+  @@index([public])
+  @@index([sourceType])
+}
+
+model TransportRoute {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  description String?
+  
+  // Route geometry
+  polyline    String?  // Encoded polyline or GeoJSON string
+  distance    Float?   // Distance in meters
+  duration    Float?   // Duration in seconds
+  
+  // Start and end points
+  startLat    Float
+  startLng    Float
+  startName   String?
+  endLat      Float
+  endLng      Float
+  endName     String?
+  
+  // Route configuration
+  mode        String   @default("driving") // driving, cycling, walking
+  
+  // Admin tracking
+  createdById String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([mode])
+}
+
+// ============================================================================
+// AFFILIATE PROGRAMS & INTEGRATION
+// ============================================================================
+
+model AffiliateProgram {
+  id               String    @id @default(uuid())
+  name             String    // Human-readable name
+  code             String    @unique // EXPEDIA, BOOKING_COM, AGODA, etc.
+  type             String    // ACCOMMODATION, TOURS, TRANSPORT, GEAR, META_SEARCH
+  
+  // Configuration (secrets should be in ENV, this stores metadata)
+  apiKeyConfigured Boolean   @default(false) // Whether API key is set in ENV
+  affiliateId      String?   // Partner/Affiliate ID
+  baseUrl          String?   // Base URL for the affiliate program
+  deepLinkPattern  String?   // URL pattern with placeholders: {propertyName}, {affiliateId}, {location}
+  
+  // Settings
+  active           Boolean   @default(false)
+  priority         Int       @default(0)     // Higher = preferred for matching
+  
+  // Health monitoring
+  lastStatus       String    @default("UNKNOWN") // OK, ERROR, DEGRADED, UNKNOWN
+  lastErrorMessage String?
+  lastCheckedAt    DateTime?
+  
+  // Metadata
+  description      String?
+  logoUrl          String?
+  websiteUrl       String?
+  
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  
+  // Relations
+  matchLogs        AffiliateMatchLog[]
+  
+  @@index([type])
+  @@index([active])
+  @@index([lastStatus])
+}
+
+model AffiliateMatchLog {
+  id                 String   @id @default(uuid())
+  userId             String?  // Nullable for anonymous users
+  stayId             String?
+  restaurantId       String?  // For food delivery clicks
+  affiliateProgramId String?
+  
+  // Click type
+  clickType          String   @default("ACCOMMODATION") // ACCOMMODATION, FOOD_DELIVERY
+  
+  // Match details
+  clickedName        String   // What user clicked on
+  matchedName        String?  // What we matched to
+  generatedUrl       String?  // The URL we generated
+  
+  // Result
+  success            Boolean  @default(false)
+  errorMessage       String?
+  
+  // Context (for stays)
+  checkInDate        DateTime?
+  checkOutDate       DateTime?
+  guests             Int?
+  
+  createdAt          DateTime @default(now())
+  
+  // Relations
+  stay               Stay?            @relation(fields: [stayId], references: [id])
+  restaurant         Restaurant?      @relation(fields: [restaurantId], references: [id])
+  affiliateProgram   AffiliateProgram? @relation(fields: [affiliateProgramId], references: [id])
+  
+  @@index([stayId])
+  @@index([restaurantId])
+  @@index([affiliateProgramId])
+  @@index([clickType])
+  @@index([success])
+  @@index([createdAt])
+}
+
+// Sync status tracking for external data sources
+model DataSyncStatus {
+  id              String    @id @default(uuid())
+  sourceType      String    @unique // GOOGLE_TRAVEL, BOOKING_COM, etc.
+  lastSyncAt      DateTime?
+  lastStatus      String    @default("NEVER") // SUCCESS, FAILED, IN_PROGRESS, NEVER
+  lastErrorMessage String?
+  recordsUpdated  Int       @default(0)
+  recordsCreated  Int       @default(0)
+  nextScheduledAt DateTime?
+  
+  updatedAt       DateTime  @updatedAt
+}
+
+// ============================================================================
+// SYNC JOB LOGGING
+// ============================================================================
+
+model SyncLog {
+  id            String   @id @default(uuid())
+  provider      String   // GOOGLE_PLACES, BOOKING_COM, TRIPADVISOR, etc.
+  type          String   // STAY, DINING, ACTIVITY, INTEGRATION_HEALTH
+  
+  // Execution details
+  startedAt     DateTime @default(now())
+  finishedAt    DateTime?
+  duration      Int?     // Duration in milliseconds
+  
+  // Results
+  status        String   @default("IN_PROGRESS") // IN_PROGRESS, SUCCESS, PARTIAL, FAILED
+  createdCount  Int      @default(0)
+  updatedCount  Int      @default(0)
+  skippedCount  Int      @default(0)
+  failedCount   Int      @default(0)
+  
+  // Details
+  errorMessage  String?
+  errorDetails  String?  // JSON with detailed error info
+  summary       String?  // Human-readable summary
+  metadata      String?  // JSON with additional context
+  
+  // Trigger info
+  triggeredBy   String   @default("CRON") // CRON, MANUAL, WEBHOOK
+  triggeredById String?  // User ID if manual
+  
+  @@index([provider])
+  @@index([type])
+  @@index([status])
+  @@index([startedAt])
+}
+
+// ============================================================================
+// AUDIT LOGGING
+// ============================================================================
+
+model UserLog {
+  id          String   @id @default(uuid())
+  userId      String?  // Nullable for system actions
+  action      String   // LOGIN, LOGOUT, CREATE, UPDATE, DELETE, VIEW, SYNC, etc.
+  resource    String   // Activity, Stay, Booking, User, etc.
+  resourceId  String?  // ID of affected resource
+  
+  // Request context
+  ipAddress   String?
+  userAgent   String?
+  
+  // Change tracking
+  oldValue    String?  // JSON of old values
+  newValue    String?  // JSON of new values
+  
+  // Status
+  status      String   @default("SUCCESS") // SUCCESS, FAILED
+  errorMessage String?
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([userId])
+  @@index([action])
+  @@index([resource])
+  @@index([createdAt])
+}
+
+// ============================================================================
+// AGENT MODEL (DISTINCT FROM OPERATOR)
+// ============================================================================
+
+model Agent {
+  id              String   @id @default(uuid())
+  userId          String?  @unique // Link to User if agent has login
+  name            String
+  email           String   @unique
+  phone           String
+  whatsapp        String?
+  
+  // Company info
+  company         String?
+  companyLogo     String?
+  
+  // Commission
+  commissionRate  Float    @default(0)
+  commissionType  String   @default("PERCENTAGE") // PERCENTAGE, FIXED
+  
+  // Status
+  verified        Boolean  @default(false)
+  active          Boolean  @default(true)
+  
+  // Performance
+  totalBookings   Int      @default(0)
+  totalRevenue    Float    @default(0)
+  rating          Float    @default(0)
+  
+  // Bank details for payouts (JSON)
+  bankDetails     String?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([email])
+  @@index([verified])
+  @@index([active])
+}
+
+// ============================================================================
+// CONTENT MANAGEMENT SYSTEM (CMS)
+// ============================================================================
+
+model BlogPost {
+  id            String    @id @default(uuid())
+  title         String
+  slug          String    @unique
+  excerpt       String?
+  content       String    // HTML or Markdown content
+  coverImage    String?
+  images        String?   // JSON array of image URLs
+  
+  // Categorization
+  category      String    @default("general") // travel-tips, local-culture, adventure, food, etc.
+  tags          String?   // Comma-separated tags
+  
+  // SEO
+  metaTitle     String?
+  metaDescription String?
+  metaKeywords  String?
+  
+  // Publishing
+  status        String    @default("DRAFT") // DRAFT, PUBLISHED, ARCHIVED
+  publishedAt   DateTime?
+  authorId      String?
+  authorName    String?
+  
+  // Engagement
+  readTime      String?   // e.g. "5 min read"
+  viewCount     Int       @default(0)
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@index([slug])
+  @@index([status])
+  @@index([category])
+  @@index([publishedAt])
+}
+
+model Event {
+  id            String    @id @default(uuid())
+  title         String
+  slug          String    @unique
+  description   String
+  content       String?   // Detailed content
+  coverImage    String?
+  images        String?   // JSON array
+  
+  // Schedule
+  startDate     DateTime
+  endDate       DateTime?
+  startTime     String?   // "09:00"
+  endTime       String?   // "17:00"
+  isAllDay      Boolean   @default(false)
+  
+  // Location
+  location      String
+  venue         String?
+  coordinates   String?   // JSON {lat, lng}
+  
+  // Details
+  category      String    @default("community") // festival, sport, cultural, community, etc.
+  organizer     String?
+  contactPhone  String?
+  contactEmail  String?
+  websiteUrl    String?
+  ticketUrl     String?
+  
+  // Pricing
+  isFree        Boolean   @default(true)
+  priceRange    String?   // "Free", "RM 10-50", etc.
+  
+  // SEO
+  metaTitle     String?
+  metaDescription String?
+  
+  // Status
+  status        String    @default("DRAFT") // DRAFT, PUBLISHED, CANCELLED, COMPLETED
+  isFeatured    Boolean   @default(false)
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  @@index([slug])
+  @@index([status])
+  @@index([startDate])
+  @@index([category])
+}
+
+model HistorySection {
+  id            String   @id @default(uuid())
+  title         String
+  slug          String   @unique
+  subtitle      String?
+  content       String   // HTML or Markdown
+  excerpt       String?
+  coverImage    String?
+  images        String?  // JSON array
+  
+  // Categorization
+  era           String?  // "pre-colonial", "colonial", "post-independence", etc.
+  category      String   @default("general") // general, places, people, events, culture
+  
+  // Display
+  displayOrder  Int      @default(0)
+  isFeatured    Boolean  @default(false)
+  
+  // SEO
+  metaTitle     String?
+  metaDescription String?
+  
+  status        String   @default("DRAFT") // DRAFT, PUBLISHED, ARCHIVED
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([slug])
+  @@index([status])
+  @@index([displayOrder])
+}
+
+model FAQ {
+  id            String   @id @default(uuid())
+  question      String
+  answer        String
+  
+  // Categorization
+  category      String   @default("general") // general, booking, activities, stays, safety, transport
+  subcategory   String?
+  
+  // Display
+  displayOrder  Int      @default(0)
+  isFeatured    Boolean  @default(false)
+  
+  // Status
+  status        String   @default("PUBLISHED") // DRAFT, PUBLISHED, ARCHIVED
+  
+  // Engagement
+  helpfulCount  Int      @default(0)
+  notHelpfulCount Int    @default(0)
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([category])
+  @@index([status])
+  @@index([displayOrder])
+}
+
+model MediaAsset {
+  id            String   @id @default(uuid())
+  filename      String
+  originalName  String
+  mimeType      String
+  size          Int      // bytes
+  url           String
+  
+  // Organization
+  folder        String   @default("/") // Virtual folder path
+  category      String   @default("general") // general, activities, stays, dining, events, blog
+  
+  // Metadata
+  alt           String?
+  caption       String?
+  tags          String?  // Comma-separated
+  
+  // Image dimensions (for images)
+  width         Int?
+  height        Int?
+  
+  // Attribution
+  uploadedById  String?
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([folder])
+  @@index([category])
+  @@index([mimeType])
+}
+
+// ============================================================================
+// UNIFIED INTEGRATION CONFIG
+// ============================================================================
+
+model IntegrationConfig {
+  id               String    @id @default(uuid())
+  
+  // Categorization
+  category         String    // AFFILIATE, ACCOMMODATION, ACTIVITIES, DINING, MAPS_TRANSPORT, SOCIAL_MEDIA
+  provider         String    @unique // BOOKING_COM, AGODA, GOOGLE_PLACES, FOODPANDA, GOOGLE_MAPS, INSTAGRAM, etc.
+  displayName      String    // Human-friendly name
+  type             String    // More specific: ACCOMMODATION, FOOD_DELIVERY, TOURS, MAPS, SOCIAL_FEED, etc.
+  
+  // Status
+  isActive         Boolean   @default(false)
+  
+  // Credentials (NOTE: In production, prefer env vars for secrets)
+  apiKey           String?   // API key or access token
+  apiKeySource     String    @default("ENV") // ENV or DB - indicates where key comes from
+  clientId         String?   // OAuth client ID
+  clientSecret     String?   // OAuth client secret (should be env in prod)
+  affiliateId      String?   // Affiliate/Partner ID
+  accessToken      String?   // For OAuth-based integrations
+  refreshToken     String?
+  tokenExpiresAt   DateTime?
+  
+  // Configuration
+  baseUrl          String?   // Base API URL
+  deepLinkPattern  String?   // For affiliates: URL pattern with placeholders
+  webhookUrl       String?   // Webhook endpoint if applicable
+  configJson       String?   // Flexible JSON for extra settings
+  
+  // Health monitoring
+  lastStatus       String    @default("UNKNOWN") // OK, ERROR, DEGRADED, UNKNOWN
+  lastErrorMessage String?
+  lastCheckedAt    DateTime?
+  
+  // Sync tracking (for data-fetching integrations)
+  lastSyncAt       DateTime?
+  lastSyncStatus   String?   // SUCCESS, FAILED, IN_PROGRESS
+  recordsSynced    Int       @default(0)
+  
+  // Metadata
+  description      String?
+  logoUrl          String?
+  websiteUrl       String?
+  documentationUrl String?
+  usedBy           String?   // JSON array of modules: ["stays", "dining", "activities"]
+  priority         Int       @default(0) // Higher = preferred
+  
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  
+  @@index([category])
+  @@index([type])
+  @@index([isActive])
+  @@index([lastStatus])
+}
+
+// ============================================================================
+// SCRAPING & DATA INGESTION LAYER
+// ============================================================================
+
+model ScrapedSource {
+  id        String   @id @default(uuid())
+  name      String   // Human-readable name, e.g. "Google Places - Dining"
+  type      String   // "STAY" | "DINING" | "ACTIVITY" | "EVENT" | "HISTORY"
+  baseUrl   String?  // Base URL for the source
+  active    Boolean  @default(true)
+  notes     String?  // Admin notes about this source
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  scrapedItems ScrapedItem[]
+  
+  @@index([type])
+  @@index([active])
+}
+
+model ScrapedItem {
+  id                  String   @id @default(uuid())
+  sourceId            String
+  source              ScrapedSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  
+  // Categorization
+  category            String   // "STAY" | "DINING" | "ACTIVITY" | "EVENT" | "HISTORY" | "BLOG"
+  
+  // External identifiers
+  externalId          String?  // Google Place ID, or other external system ID
+  externalUrl         String?  // Link to original source
+  
+  // Raw scraped content
+  title               String?
+  rawContent          String?  // Raw HTML, JSON, or other format
+  metaJson            String?  // Structured metadata extracted from source (stored as JSON string)
+  
+  // Mapping information
+  targetModel         String?  // "Stay" | "Restaurant" | "Activity" | "Event" | "HistorySection" | "BlogPost"
+  targetRecordId      String?  // ID of the created record after import
+  
+  // Status tracking
+  status              String   @default("NEW") // NEW | REVIEWED | IMPORTED | IGNORED | ERROR
+  reviewedBy          String?  // User ID who reviewed
+  reviewedAt          DateTime?
+  errorMessage        String?  // If status is ERROR
+  
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  
+  @@index([sourceId])
+  @@index([category])
+  @@index([status])
+  @@index([externalId])
+  @@index([targetModel])
+  @@index([createdAt])
+}
+
+// Track processing jobs for data ingestion
+model IngestionJob {
+  id                String   @id @default(uuid())
+  type              String   // "GOOGLE_PLACES_DINING" | "GOOGLE_PLACES_STAYS" | "GOOGLE_PLACES_ACTIVITIES"
+  status            String   @default("PENDING") // PENDING | RUNNING | COMPLETED | FAILED
+  
+  // Job parameters
+  parameters        String?  // JSON string: { searchQuery: "restaurants in KKB", radius: 5000, etc. }
+  
+  // Progress tracking
+  totalItems        Int      @default(0)
+  processedItems    Int      @default(0)
+  successCount      Int      @default(0)
+  errorCount        Int      @default(0)
+  
+  // Results
+  resultSummary     String?  // Human-readable summary
+  errors            String?  // JSON string: array of error messages
+  
+  // Execution details
+  startedAt         DateTime?
+  completedAt       DateTime?
+  triggeredBy       String?  // User ID who triggered this job
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([type])
+  @@index([status])
+  @@index([createdAt])
+}
+// ============================================================================
+// PRIVATE API KEYS MANAGEMENT (Encrypted Storage)
+// ============================================================================
+
+model ApiKey {
+  id              String   @id @default(uuid())
+  name            String   @unique // e.g., "SERPAPI_KEY", "BOOKING_API_KEY", "MAPTILER_KEY"
+  encryptedValue  String   // AES-256 encrypted value
+  description     String?  // Human-readable description
+  isActive        Boolean  @default(true)
+  createdBy       String?  // User ID who created this key
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([name])
+  @@index([isActive])
+}
+
+// ============================================================================
+// INTEGRATION LOGGING
+// ============================================================================
+
+model IntegrationLog {
+  id              String   @id @default(uuid())
+  provider        String   // SERPAPI, BOOKING_COM, GOOGLE_PLACES, etc.
+  operation       String   // SYNC_RESTAURANTS, SYNC_STAYS, SYNC_MAP_PINS, etc.
+  status          String   @default("IN_PROGRESS") // IN_PROGRESS, SUCCESS, PARTIAL, FAILED
+  
+  // Results
+  totalFetched    Int      @default(0)
+  created         Int      @default(0)
+  updated         Int      @default(0)
+  skipped         Int      @default(0)
+  failed          Int      @default(0)
+  
+  // Timing
+  startedAt       DateTime @default(now())
+  completedAt     DateTime?
+  duration        Int?     // Duration in milliseconds
+  
+  // Details
+  errorMessage    String?
+  errorDetails    String?  // JSON with detailed error info
+  summary         String?  // Human-readable summary
+  metadata        String?  // JSON with additional context
+  
+  // Trigger info
+  triggeredBy     String?  // User ID if manual
+  
+  @@index([provider])
+  @@index([operation])
+  @@index([status])
+  @@index([startedAt])
+}
+
+// ============================================================================
+// SOCIAL MEDIA POSTS
+// ============================================================================
+
+model InstagramPost {
+  id          String   @id @default(uuid())
+  
+  // Post details
+  username    String   // Instagram username
+  caption     String   // Post caption
+  image       String   // Image URL
+  likes       String   // Likes count (e.g., "1.2k")
+  
+  // Post metadata
+  postUrl     String?  // Link to original Instagram post
+  hashtags    String?  // Comma-separated hashtags
+  
+  // Display settings
+  isVisible   Boolean  @default(true)
+  isFeatured  Boolean  @default(false)
+  displayOrder Int     @default(0) // Lower number = displayed first
+  
+  // Source tracking
+  sourceType  String   @default("MANUAL") // MANUAL, INSTAGRAM_API, IMPORTED
+  externalId  String?  @unique // Instagram post ID if from API
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([isVisible])
+  @@index([isFeatured])
+  @@index([displayOrder])
+  @@index([createdAt])
+}
+
+

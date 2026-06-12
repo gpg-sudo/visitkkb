@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisitKKB Backend API Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a4d3e 0%, #2b6b5a 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-family: Georgia, serif;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 0.9em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+        
+        .status {
+            display: inline-block;
+            background: #4caf50;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .endpoints {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .endpoint {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .endpoint:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .endpoint h3 {
+            font-family: Georgia, serif;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .get { background: #2196f3; }
+        .post { background: #4caf50; }
+        
+        .endpoint p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .test-button {
+            background: #fff;
+            color: #1a4d3e;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        .test-button:hover {
+            background: #e0f2f1;
+            transform: scale(1.05);
+        }
+        
+        .response {
+            background: #000;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+        
+        .response.show {
+            display: block;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            opacity: 0.7;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            font-family: Georgia, serif;
+        }
+        
+        .stat-label {
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>VisitKKB Backend API</h1>
+            <p class="tagline">Enterprise-Grade Tourism Platform</p>
+            <div class="status">🟢 RUNNING</div>
+        </header>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Services</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">API Endpoints</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+        </div>
+        
+        <div class="endpoints">
+            <div class="endpoint" onclick="testEndpoint('health')">
+                <span class="method get">GET</span>
+                <h3>Health Check</h3>
+                <p>Check if the backend API is running and get available endpoints.</p>
+                <button class="test-button">Test Endpoint →</button>
+                <div class="response" id="response-health"></div>
+            </div>
+            
+            <div class="endpoint" onclick="testEndpoint('search')">
+                <span class="method get">GET</span>
+                <h3>Search & Discovery</h3>
+                <p>Search activities, stays, and restaurants with advanced filters.</p>
+                <button class="test-button">Test Endpoint →</button>
+                <div class="response" id="response-search"></div>
+            </div>
+            
+            <div class="endpoint" onclick="testEndpoint('auth')">
+                <span class="method post">POST</span>
+                <h3>Authentication</h3>
+                <p>User registration and login with JWT token generation.</p>
+                <button class="test-button">Test Endpoint →</button>
+                <div class="response" id="response-auth"></div>
+            </div>
+            
+            <div class="endpoint" onclick="testEndpoint('bookings')">
+                <span class="method post">POST</span>
+                <h3>Bookings</h3>
+                <p>Create and manage bookings with payment integration.</p>
+                <button class="test-button">Test Endpoint →</button>
+                <div class="response" id="response-bookings"></div>
+            </div>
+            
+            <div class="endpoint" onclick="testEndpoint('reviews')">
+                <span class="method get">GET</span>
+                <h3>Reviews & Ratings</h3>
+                <p>Manage user reviews with verification and aggregation.</p>
+                <button class="test-button">Test Endpoint →</button>
+                <div class="response" id="response-reviews"></div>
+            </div>
+            
+            <div class="endpoint" onclick="testEndpoint('analytics')">
+                <span class="method post">POST</span>
+                <h3>Analytics</h3>
+                <p>Track user events and generate business insights.</p>
+                <button class="test-button">Test Endpoint →</button>
+                <div class="response" id="response-analytics"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        async function testEndpoint(name) {
+            const responseEl = document.getElementById(`response-${name}`);
+            responseEl.classList.add('show');
+            responseEl.innerHTML = '<div class="loading">Testing endpoint...</div>';
+            
+            try {
+                let response;
+                
+                switch(name) {
+                    case 'health':
+                        response = await fetch('/api/health');
+                        break;
+                    case 'search':
+                        response = await fetch('/api/search?type=activities&location=KKB&limit=3');
+                        break;
+                    case 'auth':
+                        response = await fetch('/api/auth', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                email: `demo${Date.now()}@visitkkb.com`,
+                                password: 'Demo123456!',
+                                name: 'Demo User'
+                            })
+                        });
+                        break;
+                    case 'bookings':
+                        response = await fetch('/api/bookings', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                bookingType: 'ACTIVITY',
+                                itemId: 'demo-activity',
+                                startDate: '2025-12-15',
+                                participants: 2,
+                                customerDetails: {
+                                    name: 'Demo User',
+                                    email: 'demo@visitkkb.com',
+                                    phone: '+60123456789'
+                                },
+                                paymentMethod: 'pm_test'
+                            })
+                        });
+                        break;
+                    case 'reviews':
+                        response = await fetch('/api/reviews?itemType=activity&itemId=test&limit=5');
+                        break;
+                    case 'analytics':
+                        response = await fetch('/api/analytics', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                event: 'demo_test',
+                                metadata: { source: 'demo_page' }
+                            })
+                        });
+                        break;
+                }
+                
+                const data = await response.json();
+                responseEl.innerHTML = `<strong>Status:</strong> ${response.status}<br><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                
+            } catch (error) {
+                responseEl.innerHTML = `<strong>Error:</strong> ${error.message}<br><br>Note: Database connection required for full functionality.`;
+            }
+        }
+        
+        // Auto-test health endpoint on load
+        window.addEventListener('load', () => {
+            setTimeout(() => testEndpoint('health'), 500);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+[
+    {
+        "title": "Ancient Beginnings",
+        "slug": "neolithic-era-ancient-beginnings",
+        "year": "Neolithic Era",
+        "category": "history-timeline",
+        "content": "Long before modern development, the Kuala Kubu region was home to prehistoric communities. Archaeological evidence suggests human settlement during the Neolithic and Bronze ages, when the area's rich tin deposits first attracted inhabitants.",
+        "status": "published",
+        "order": 1
+    },
+    {
+        "title": "Engineering Marvel",
+        "slug": "1780s-engineering-marvel",
+        "year": "1780s",
+        "category": "history-timeline",
+        "content": "Local Malay communities, assisted by indigenous Orang Asli, constructed a remarkable earthen dam across Sungai Kubu. Stretching 1.6 km long and nearly 100 meters wide, this structure used only timber and earth. The dam created a massive reservoir for tin prospecting—when water overflowed, the powerful current separated heavy tin ore from lighter soil, collecting the valuable metal downstream for easy extraction.",
+        "status": "published",
+        "order": 2
+    },
+    {
+        "title": "The Selangor Civil War",
+        "slug": "1869-1875-selangor-civil-war",
+        "year": "1869-1875",
+        "category": "history-timeline",
+        "content": "Kuala Kubu became a strategic battleground during Selangor's civil war. Sayyid Mashor, allied with Raja Mahadi, established fortified positions here—hence the name \"Kubu\" (fort). With Chinese war leader Chong Chong, he commanded 2,500 fighters. Only a force from Pahang could dislodge him, leading to Kuala Kubu temporarily falling under Pahang administration as payment for military assistance.",
+        "status": "published",
+        "order": 3
+    },
+    {
+        "title": "The Ampang Pecah Tragedy",
+        "slug": "1883-ampang-pecah-tragedy",
+        "year": "1883",
+        "category": "history-timeline",
+        "content": "After a century of service, the ancient dam catastrophically failed. The resulting flood devastated the settlement, and among the victims was Cecil Ranking, the British collector and magistrate who had just begun planning to transform Kuala Kubu into a modern colonial town. This disaster forever changed the region's geography and earned the site its name: Ampang Pecah (Broken Dam).",
+        "status": "published",
+        "order": 4,
+        "highlighted": true
+    },
+    {
+        "title": "Colonial Golden Age",
+        "slug": "1883-1931-colonial-golden-age",
+        "year": "1883-1931",
+        "category": "history-timeline",
+        "content": "Undeterred by tragedy, British authorities rebuilt Kuala Kubu downstream as Selangor's third-largest town. The settlement flourished with:\n- A railway branch line connecting to the main north-south track\n- District administrative headquarters, hospital, and officers' quarters\n- Thriving tin mining operations\n- The colonial hill station of Bukit Kutu (established 1896)\n\nHowever, intensive upstream mining caused severe soil erosion. Recurring floods between 1900-1931 buried parts of the town under silt.",
+        "status": "published",
+        "order": 5
+    },
+    {
+        "title": "Birth of Kuala Kubu Bharu",
+        "slug": "1926-1931-birth-of-kkb",
+        "year": "1926-1931",
+        "category": "history-timeline",
+        "content": "New Zealand architect Charles Compton Reade designed a completely new town on higher ground, conceived as a \"garden town.\" The 1926 flood accelerated development, and by 1930, the administration had relocated. The final major flood of 1931 prompted remaining holdouts to abandon old Kuala Kubu, which was gradually buried and forgotten until redevelopment in the 1980s.",
+        "status": "published",
+        "order": 6
+    },
+    {
+        "title": "The New Era",
+        "slug": "1931-present-new-era",
+        "year": "1931-Present",
+        "category": "history-timeline",
+        "content": "Kuala Kubu Bharu thrived as a charming colonial town. During the British era, it hosted cricket leagues, football tournaments, and served as a training ground for the Federated Malay States Volunteer Force. The town even had its own airstrip for official flights and flying club challenges.",
+        "status": "published",
+        "order": 7
+    },
+    {
+        "title": "Old Kuala Kubu (Kuala Kubu Lama)",
+        "slug": "old-kuala-kubu-lama",
+        "category": "history-locations",
+        "content": "**What it was:** The original colonial settlement that flourished from 1883-1931 as a major administrative and commercial center.\n\n**Why it matters:** This prosperous town was home to district offices, a hospital, railway station, and diverse commercial establishments run by Malay, European, and Chinese entrepreneurs.\n\n**Today:** The site was largely abandoned after 1931 and buried under silt. Redevelopment in the 1980s revealed some traces. It remains an important archaeological site for understanding colonial urban planning.",
+        "status": "published",
+        "order": 1
+    },
+    {
+        "title": "Ampang Pecah / Alor Lempah",
+        "slug": "ampang-pecah-alor-lempah",
+        "category": "history-locations",
+        "content": "**What it was:** The location of the massive earthen dam built in the 1780s and the site of the catastrophic 1883 collapse.\n\n**Why it matters:** This represents both indigenous engineering ingenuity and one of Selangor's worst natural disasters. The tragedy claimed numerous lives and reshaped the valley.\n\n**Today:** Visitors can explore the river area and remnants of the dam structure. It's popular for picnics and as a starting point for understanding KKB's dramatic history.",
+        "status": "published",
+        "order": 2
+    },
+    {
+        "title": "Bukit Kutu",
+        "slug": "bukit-kutu",
+        "category": "history-locations",
+        "content": "**What it was:** An exclusive colonial hill station established in 1896, providing a cool retreat for officials and wealthy merchants.\n\n**Why it matters:** It represents the lifestyle and social structure of colonial society. Accessible only by bridle path, it was one of several such retreats across Malaya.\n\n**Today:** Hikers can trek to the summit, where ruins of the old station buildings provide tangible connections to the colonial past, along with spectacular views.",
+        "status": "published",
+        "order": 3
+    },
+    {
+        "title": "Fraser's Hill Route",
+        "slug": "frasers-hill-route",
+        "category": "history-locations",
+        "content": "**What it was:** The improved bridle path connecting Kuala Kubu to Raub, Pahang, which later evolved into the road to Fraser's Hill.\n\n**Why it matters:** This route was crucial for both commerce and military operations, including supply lines during the Pahang Rebellion.\n\n**Today:** The modern road to Fraser's Hill follows roughly the same route, now serving as a scenic drive through pristine rainforest.",
+        "status": "published",
+        "order": 4
+    },
+    {
+        "title": "The Indigenous Orang Asli",
+        "slug": "indigenous-orang-asli",
+        "category": "history-figures",
+        "content": "The Semai and other indigenous communities were the area's original inhabitants. They assisted in constructing the great dam and possessed deep knowledge of the forest and rivers that early settlers relied upon.",
+        "status": "published",
+        "order": 1
+    },
+    {
+        "title": "Sayyid Mashor",
+        "slug": "sayyid-mashor",
+        "category": "history-figures",
+        "content": "A prominent leader during the Selangor Civil War, Sayyid Mashor made Kuala Kubu his stronghold. His mother, Raja Sedia, received a pension from British authorities—an indication of the family's significance even after their defeat.",
+        "status": "published",
+        "order": 2
+    },
+    {
+        "title": "Cecil Ranking",
+        "slug": "cecil-ranking",
+        "category": "history-figures",
+        "content": "Appointed as Kuala Kubu's collector and magistrate, Ranking envisioned transforming the settlement into a major town. Tragically, he perished in the 1883 flood before realizing his plans. His death prompted official investigation and documentation that provides invaluable historical records.",
+        "status": "published",
+        "order": 3
+    },
+    {
+        "title": "Early Entrepreneurs",
+        "slug": "early-entrepreneurs",
+        "category": "history-figures",
+        "content": "Diverse investors shaped KKB's economy:\n- **Che Manap** – Malay entrepreneur in mining and business\n- **C.C. Thomson** – European mining investor\n- **Towkay Loke Yew** – Prominent Chinese businessman\n- **Towkay Tan Kim Bee** – Chinese mining magnate\n\nThese pioneers established mining operations, plantations, gambling dens, and transport services—including one of Malaya's earliest commercial bus routes (KKB to Raub), operated by a French investor.",
+        "status": "published",
+        "order": 4
+    },
+    {
+        "title": "Charles Compton Reade",
+        "slug": "charles-compton-reade",
+        "category": "history-figures",
+        "content": "The New Zealand architect who designed Kuala Kubu Bharu's unique garden town layout. His vision created the pleasant, tree-lined settlement we see today.",
+        "status": "published",
+        "order": 5
+    },
+    {
+        "title": "Three Lives, Three Names",
+        "slug": "three-lives-three-names",
+        "category": "history-trivia",
+        "icon": "🏛️",
+        "content": "The settlement has lived three distinct lives: first as Ulu Selangor/Hulu Selangor (pre-1880s), then as Kuala Kubu (1883-1931), and finally as Kuala Kubu Bharu (1931-present).",
+        "status": "published",
+        "order": 1
+    },
+    {
+        "title": "Game-Changing Hydro-Engineering",
+        "slug": "hydro-engineering",
+        "category": "history-trivia",
+        "icon": "⚡",
+        "content": "The 1780s dam was likely one of Southeast Asia's largest pre-colonial hydraulic structures, built entirely by hand without modern equipment.",
+        "status": "published",
+        "order": 2
+    },
+    {
+        "title": "Buried Treasure",
+        "slug": "buried-treasure",
+        "category": "history-trivia",
+        "icon": "📍",
+        "content": "An entire colonial town—complete with railway station, hospital, government offices, and shophouses—lies beneath the modern settlement of Kuala Kubu Lama, preserved under layers of flood silt.",
+        "status": "published",
+        "order": 3
+    },
+    {
+        "title": "From the Sky",
+        "slug": "from-the-sky",
+        "category": "history-trivia",
+        "icon": "✈️",
+        "content": "KKB had its own airstrip! British officials flew in from Kuala Lumpur, and the town's flying club posed landing challenges for amateur pilots.",
+        "status": "published",
+        "order": 4
+    },
+    {
+        "title": "Colonial Sports Hub",
+        "slug": "colonial-sports-hub",
+        "category": "history-trivia",
+        "icon": "🏏",
+        "content": "The town hosted organized cricket matches and football leagues with teams from neighboring settlements like Serendah and Rawang—sophisticated sporting culture for a frontier town.",
+        "status": "published",
+        "order": 5
+    },
+    {
+        "title": "Railway Dreams",
+        "slug": "railway-dreams",
+        "category": "history-trivia",
+        "icon": "🚂",
+        "content": "Plans existed for a rail line from KKB to Raub, Pahang, which would have made KKB a major junction. Technical challenges killed the project, but the vision shows how important the town once was.",
+        "status": "published",
+        "order": 6
+    },
+    {
+        "title": "Preserving KKB's Heritage",
+        "slug": "preserving-heritage",
+        "category": "history-meta",
+        "content": "Understanding Kuala Kubu Bharu's rich past helps us appreciate its unique character today. From prehistoric settlement to tin-mining frontier, from colonial disaster to garden town renewal—every street, building, and landmark tells part of this remarkable story.\n\nThe Kuala Kubu Historical Society (PESKUBU) continues working to uncover, document, and share this heritage, ensuring that future generations can connect with the dramatic history that shaped this charming town.",
+        "status": "published",
+        "order": 1
+    }
+]
